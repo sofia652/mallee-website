@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mallee | For families</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:    #FAF7F2;
+    --white:    #FFFFFF;
+    --forest:   #1D4A2F;
+    --moss:     #2D6A4F;
+    --sage:     #52B788;
+    --sage-light: #D8F3DC;
+    --gold:     #C9963A;
+    --gold-light: #FDF3E0;
+    --earth:    #3D2B1F;
+    --warm-grey: #6B6560;
+    --border:   rgba(29,74,47,0.1);
+    --charcoal: #1C1C1C;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--forest);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+  .nav-link {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--warm-grey);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .nav-link:hover { color: var(--forest); background: var(--sage-light); }
+  .nav-link--active { color: var(--forest); font-weight: 500; background: var(--sage-light); }
+
+  .nav-cta {
+    background: var(--forest);
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--moss); }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 80px;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding-left: 6rem;
+    padding-right: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    right: -100px; bottom: -100px;
+    background: radial-gradient(ellipse, rgba(82,183,136,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--moss);
+    background: var(--sage-light);
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-headline {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--forest);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--warm-grey);
+    font-weight: 300;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--forest);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--moss);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(29,74,47,0.2);
+  }
+
+  .btn-ghost {
+    color: var(--forest);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .btn-ghost:hover { gap: 0.7rem; }
+
+  .hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 500px;
+    height: 580px;
+    object-fit: cover;
+    object-position: center 15%;
+    border-radius: 240px 240px 180px 180px;
+    display: block;
+    box-shadow: 0 20px 60px rgba(29,74,47,0.15);
+  }
+
+  .hero-image-badge {
+    position: absolute;
+    bottom: 40px;
+    left: -20px;
+    background: white;
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    max-width: 240px;
+  }
+
+  .badge-icon {
+    width: 40px; height: 40px;
+    background: var(--sage-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+
+  .badge-text {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--charcoal);
+    font-weight: 400;
+  }
+  .badge-text strong {
+    display: block;
+    font-weight: 600;
+    color: var(--forest);
+    font-size: 0.85rem;
+  }
+
+  /* ── STATS ────────────────────────────────────────── */
+  .stats {
+    background: var(--forest);
+    padding: 3.5rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Lora', serif;
+    font-size: 3rem;
+    font-weight: 500;
+    color: var(--sage);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* ── HOW IT WORKS ─────────────────────────────────── */
+  .how {
+    background: var(--white);
+    padding: 7rem 6rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--sage);
+    display: inline-block;
+  }
+
+  .section-headline {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500;
+    color: var(--forest);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--warm-grey);
+    line-height: 1.7;
+    max-width: 540px;
+    font-weight: 300;
+    margin-bottom: 4rem;
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .how-card {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .how-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(29,74,47,0.1);
+  }
+
+  .how-card-num {
+    font-family: 'Lora', serif;
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--sage-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .how-card-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--moss);
+    background: var(--sage-light);
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .how-card-title {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--forest);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .how-card-body {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--warm-grey);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkin-example {
+    background: white;
+    border-left: 3px solid var(--sage);
+    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.2rem;
+    margin-top: 1rem;
+  }
+
+  .checkin-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.5rem;
+  }
+
+  .checkin-bubble {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--forest);
+    line-height: 1.6;
+  }
+
+  .how-card-illustration {
+    margin-top: 1.5rem;
+    opacity: 0.5;
+  }
+
+  /* ── I-CAN BAND ───────────────────────────────────── */
+  .ican-band {
+    background: var(--gold-light);
+    border-top: 1px solid rgba(201,150,58,0.2);
+    border-bottom: 1px solid rgba(201,150,58,0.2);
+    padding: 5rem 6rem;
+  }
+
+  .ican-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .ican-band .section-eyebrow { color: var(--gold); }
+  .ican-band .section-eyebrow::before { background: var(--gold); }
+  .ican-band .section-headline { color: var(--earth); }
+
+  .ican-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(61,43,31,0.75);
+    font-weight: 300;
+    margin-top: 1.5rem;
+  }
+
+  /* ── ABOUT ────────────────────────────────────────── */
+  .about {
+    background: var(--white);
+    padding: 7rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-photo {
+    position: relative;
+  }
+
+  .about-photo img {
+    width: 100%;
+    max-width: 420px;
+    height: 480px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 200px 200px 120px 120px;
+    display: block;
+    box-shadow: 0 16px 50px rgba(29,74,47,0.12);
+  }
+
+  .about-content .section-headline {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-body {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--warm-grey);
+    font-weight: 300;
+  }
+
+  .about-body p + p { margin-top: 1.2rem; }
+
+  .about-sig {
+    margin-top: 2rem;
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  /* ── PROMISE ──────────────────────────────────────── */
+  .promise {
+    background: var(--forest);
+    padding: 7rem 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .promise::before {
+    content: '';
+    position: absolute;
+    width: 800px; height: 800px;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(82,183,136,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .promise-inner { position: relative; max-width: 700px; margin: 0 auto; }
+
+  .promise .section-eyebrow { color: var(--sage); justify-content: center; }
+  .promise .section-eyebrow::before { background: var(--sage); }
+
+  .promise-headline {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 500;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 1.8rem;
+  }
+
+  .promise-headline em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .promise-body {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    max-width: 560px;
+    margin: 0 auto 3rem;
+  }
+
+  /* ── PRICING ──────────────────────────────────────── */
+  .pricing {
+    background: var(--cream);
+    padding: 7rem 6rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .pricing-card.featured {
+    border-color: var(--forest);
+    border-width: 2px;
+  }
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+  .pricing-card {
+    background: white;
+    border-radius: 28px;
+    padding: 3rem;
+    max-width: 560px;
+    margin: 3rem auto 0;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(29,74,47,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sage), var(--moss));
+  }
+
+  .pricing-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--moss);
+    background: var(--sage-light);
+    padding: 0.35rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-title {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--forest);
+    margin-bottom: 0.4rem;
+  }
+
+  .pricing-price {
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--moss);
+    margin-bottom: 0.3rem;
+    line-height: 1;
+  }
+
+  .pricing-price span {
+    font-size: 0.9rem;
+    color: var(--warm-grey);
+  }
+
+  .pricing-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--warm-grey);
+    font-weight: 300;
+    margin: 1.2rem 0 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-features li {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(29,74,47,0.05);
+  }
+
+  .pricing-features li::before {
+    content: '';
+    width: 18px; height: 18px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M5 9l3 3 5-5' stroke='%232D6A4F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* ── CTA ──────────────────────────────────────────── */
+  .cta-section {
+    background: var(--white);
+    padding: 7rem 6rem;
+    text-align: center;
+  }
+
+  .cta-headline {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 500;
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-headline em {
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  .cta-sub {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--warm-grey);
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 0.8rem;
+    max-width: 460px;
+    margin: 0 auto 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cta-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.85rem 1.4rem;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cta-input:focus { border-color: var(--sage); }
+  .cta-input::placeholder { color: #b0a9a3; }
+
+  .cta-submit {
+    background: var(--forest);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .cta-submit:hover {
+    background: var(--moss);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(29,74,47,0.2);
+  }
+
+  .cta-note {
+    font-size: 0.75rem;
+    color: #b0a9a3;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────── */
+  footer {
+    background: var(--forest);
+    padding: 2.5rem 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CARE RECORD PREVIEW ──────────────────────────── */
+  .care-preview {
+    background: var(--forest);
+    padding: 6rem 4rem;
+    position: relative;
+  }
+
+  .care-preview::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    left: -200px; bottom: -200px;
+    background: radial-gradient(ellipse, rgba(82,183,136,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .care-preview-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .care-preview-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .care-preview-intro .section-eyebrow {
+    color: var(--sage);
+    justify-content: center;
+  }
+  .care-preview-intro .section-eyebrow::before { background: var(--sage); }
+
+  .care-preview-intro h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 500;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .care-preview-intro h2 em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .care-preview-intro p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* Browser chrome wrapper */
+  .browser-chrome {
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06);
+  }
+
+  .browser-bar {
+    background: #2A2A2A;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .browser-dots span {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+  }
+
+  .browser-dots span:nth-child(1) { background: #FF5F57; }
+  .browser-dots span:nth-child(2) { background: #FFBD2E; }
+  .browser-dots span:nth-child(3) { background: #28CA41; }
+
+  .browser-url {
+    background: #3A3A3A;
+    border-radius: 6px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+    flex: 1;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  .browser-content {
+    background: #EEE9E2;
+    height: 520px;
+    min-height: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(45,106,79,0.4) rgba(0,0,0,0.08);
+    padding: 2rem 1.5rem 3rem;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .browser-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .browser-content::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.06);
+  }
+
+  .browser-content::-webkit-scrollbar-thumb {
+    background: rgba(45,106,79,0.35);
+    border-radius: 3px;
+  }
+
+  .browser-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(45,106,79,0.55);
+  }
+
+  .browser-scroll-wrapper {
+    position: relative;
+  }
+
+  .browser-scroll-fade {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, #EEE9E2);
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .browser-scroll-hint {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    color: rgba(45,106,79,0.7);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    z-index: 3;
+    pointer-events: none;
+    animation: bounce-hint 2s ease-in-out infinite;
+  }
+
+  .browser-scroll-hint svg {
+    width: 12px; height: 12px;
+    stroke: rgba(45,106,79,0.7);
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  @keyframes bounce-hint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(3px); }
+  }
+
+  /* Care Record styles scoped inside preview */
+  .cr-page-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6B6560;
+    margin: 0 auto 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    max-width: 680px;
+    width: 100%;
+  }
+
+  .cr-doc {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    overflow: hidden;
+  }
+
+  .cr-header {
+    background: #1D4A2F;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cr-brand {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #52B788;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3rem;
+  }
+
+  .cr-title {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: white;
+  }
+
+  .cr-subtitle {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.25rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .cr-period {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+    text-align: right;
+  }
+
+  .cr-dates {
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    color: white;
+    font-style: italic;
+  }
+
+  .cr-ref {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .cr-participant-band {
+    background: #F0EDE8;
+    border-bottom: 1px solid rgba(29,74,47,0.1);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .cr-participant-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6B6560;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .cr-participant-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1D4A2F;
+  }
+
+  .cr-body {
+    padding: 1.5rem 2rem;
+  }
+
+  .cr-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .cr-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(29,74,47,0.1);
+  }
+
+  .cr-section-icon {
+    width: 26px; height: 26px;
+    background: #D8F3DC;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cr-section-icon svg {
+    width: 13px; height: 13px;
+    stroke: #2D6A4F;
+    fill: none;
+    stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;
+  }
+
+  .cr-section-title {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1D4A2F;
+  }
+
+  .cr-section-domain {
+    margin-left: auto;
+    font-size: 0.65rem;
+    color: #6B6560;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  .cr-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cr-summary-cell {
+    background: #FAF7F2;
+    border: 1px solid rgba(29,74,47,0.08);
+    border-radius: 8px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+
+  .cr-summary-num {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #1D4A2F;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .cr-summary-unit {
+    font-size: 0.62rem;
+    color: #6B6560;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .cr-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .cr-table {
+    width: 100%;
+    min-width: 420px;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+  }
+
+  .cr-table th {
+    text-align: left;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6B6560;
+    font-weight: 500;
+    padding: 0.4rem 0.6rem;
+    background: #FAF7F2;
+    border-bottom: 1px solid rgba(29,74,47,0.1);
+  }
+
+  .cr-table td {
+    padding: 0.55rem 0.6rem;
+    border-bottom: 1px solid rgba(29,74,47,0.06);
+    color: #1C1C1C;
+    vertical-align: top;
+    line-height: 1.4;
+  }
+
+  .cr-supporter-name {
+    font-weight: 500;
+    color: #1D4A2F;
+  }
+
+  .cr-hours-pill {
+    background: #D8F3DC;
+    color: #1D4A2F;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .cr-notes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cr-note-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .cr-note-date {
+    font-size: 0.65rem;
+    color: #6B6560;
+    white-space: nowrap;
+    padding-top: 0.15rem;
+    min-width: 72px;
+    font-weight: 300;
+  }
+
+  .cr-note-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #52B788;
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+  }
+
+  .cr-note-text {
+    color: #3D2B1F;
+    font-weight: 300;
+  }
+
+  .cr-ican-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .cr-ican-domain {
+    background: #FAF7F2;
+    border: 1px solid rgba(29,74,47,0.1);
+    border-radius: 8px;
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+  }
+
+  .cr-ican-domain.active {
+    background: #D8F3DC;
+    border-color: rgba(45,106,79,0.2);
+  }
+
+  .cr-ican-label {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6B6560;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 0.35rem;
+  }
+
+  .cr-ican-domain.active .cr-ican-label {
+    color: #2D6A4F;
+  }
+
+  .cr-ican-check {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #52B788;
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .cr-ican-check svg {
+    width: 8px; height: 8px;
+    stroke: white;
+    fill: none;
+    stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.5;
+  }
+
+  .cr-ican-empty {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(29,74,47,0.15);
+    margin: 0 auto;
+  }
+
+  .cr-doc-footer {
+    background: #FAF7F2;
+    border-top: 1px solid rgba(29,74,47,0.1);
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cr-footer-note {
+    font-size: 0.62rem;
+    color: #6B6560;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .cr-footer-brand {
+    font-family: 'Lora', serif;
+    font-size: 0.7rem;
+    color: #2D6A4F;
+  }
+
+  .cr-divider {
+    height: 1px;
+    background: rgba(29,74,47,0.1);
+    margin: 0 0 1.25rem;
+  }
+
+  /* ── SCROLL REVEAL ────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 2rem 4rem; gap: 2rem; text-align: center; }
+    .hero-sub { max-width: 100%; }
+    .hero-actions { justify-content: center; }
+    .hero-image img { max-width: 320px; height: 380px; margin: 0 auto; }
+    .hero-image-badge { left: 0; }
+    .stats { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 2.5rem; }
+    .how { padding: 5rem 2rem; }
+    .how-grid { grid-template-columns: 1fr; }
+    .ican-band { padding: 4rem 2rem; }
+    .about { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+    .about-photo img { max-width: 300px; height: 340px; margin: 0 auto; }
+    .promise { padding: 5rem 2rem; }
+    .pricing { padding: 5rem 2rem; }
+    .cta-section { padding: 5rem 2rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.8rem; text-align: center; }
+  }
+
+  /* ── WHO WE ARE FOR ──────────────────────────────── */
+  .who { background: var(--white); padding: 7rem 6rem; }
+  .who-inner { max-width: 1100px; margin: 0 auto; }
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+  .who-card { background: var(--cream); border-radius: 20px; padding: 2.5rem; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
+  .who-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(29,74,47,0.1); }
+  .who-num { font-family: 'Lora', serif; font-size: 3rem; font-weight: 500; color: var(--sage-light); line-height: 1; margin-bottom: 1rem; }
+  .who-card p { font-size: 0.95rem; line-height: 1.8; color: var(--warm-grey); font-weight: 300; }
+
+  /* ── TOGETHER ─────────────────────────────────────── */
+  .together { background: var(--forest); padding: 7rem 6rem; }
+  .together-inner { max-width: 900px; margin: 0 auto; }
+  .together .section-eyebrow { color: var(--sage); justify-content: center; text-align: center; }
+  .together .section-eyebrow::before { background: var(--sage); }
+  .together .section-headline { color: white; text-align: center; margin-bottom: 2.5rem; font-weight: 400; }
+  .together .section-headline:last-child { margin-bottom: 0; }
+  .together-sub { text-align: center; font-size: 1.2rem; color: rgba(255,255,255,0.5); margin-top: -0.5rem; margin-bottom: 3rem; font-style: italic; font-family: 'Lora', serif; }
+  .together-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 3rem 0; }
+  .together-col { background: rgba(255,255,255,0.06); border-radius: 16px; padding: 2rem; }
+  .together-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+  .together-col p { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.7); font-weight: 300; }
+  .together-resolution { text-align: center; margin-top: 3rem; }
+  .together-resolution p { font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.7; font-weight: 300; }
+  .together-close { font-family: 'Lora', serif; font-size: 1.4rem; font-style: italic; color: var(--sage) !important; margin-top: 1rem !important; }
+
+  /* ── BENEFITS ─────────────────────────────────────── */
+  .benefits { background: var(--white); padding: 7rem 6rem; }
+  .benefits-inner { max-width: 1100px; margin: 0 auto; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+  .benefit-card { background: white; border-radius: 20px; padding: 2.5rem; transition: transform 0.3s, box-shadow 0.3s; }
+  .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(29,74,47,0.1); }
+  .benefit-icon { width: 52px; height: 52px; background: var(--sage-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; padding: 10px; }
+  .benefit-icon svg { width: 100%; height: 100%; }
+  .benefit-title { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 500; color: var(--forest); margin-bottom: 0.8rem; line-height: 1.4; }
+  .benefit-body { font-size: 0.88rem; line-height: 1.8; color: var(--warm-grey); font-weight: 300; }
+
+  /* ── HOW IT WORKS ─────────────────────────────────── */
+  .how-works { background: var(--cream); padding: 7rem 6rem; }
+  .how-works-inner { max-width: 1100px; margin: 0 auto; }
+  /* PROCESS EXPLAINER */
+  .process-explainer { margin-top: 3.5rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .process-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .proc-step {
+    padding: 1.75rem 2rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    position: relative;
+  }
+  .proc-step--highlight {
+    background: var(--sage-light);
+    border-color: rgba(82,183,136,0.25);
+  }
+  .proc-num {
+    font-family: 'Lora', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--sage-light);
+    line-height: 1;
+    margin-bottom: 0.65rem;
+    letter-spacing: -0.02em;
+  }
+  .proc-step--highlight .proc-num {
+    color: rgba(82,183,136,0.45);
+  }
+  .proc-title {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .proc-body {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--warm-grey);
+    font-weight: 300;
+    margin: 0;
+  }
+  .proc-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+  }
+  .process-tagline {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--forest);
+    line-height: 1.5;
+  }
+  .process-tagline em {
+    color: var(--sage);
+    font-style: italic;
+  }
+
+  .proc-examples {
+    margin-top: 1.2rem;
+    background: white;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .proc-examples-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.2rem;
+  }
+  .proc-example-q {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--forest);
+    line-height: 1.55;
+    padding-left: 0.8rem;
+    border-left: 2px solid var(--sage-light);
+  }
+
+  .proc-callout {
+    margin-top: 1.4rem;
+    background: var(--forest);
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem;
+  }
+  .proc-callout p {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── FOR YOU ──────────────────────────────────────── */
+  .for-you { background: var(--cream); padding: 7rem 6rem; }
+  .for-you-inner { max-width: 680px; margin: 0 auto; }
+  .for-you-body p { font-size: 1rem; line-height: 1.9; color: var(--warm-grey); font-weight: 300; margin-bottom: 1.2rem; }
+  .for-you-bullets { list-style: none; margin-top: 2rem; }
+  .for-you-bullets li { font-size: 0.9rem; line-height: 1.6; color: var(--charcoal); padding: 0.6rem 0; display: flex; align-items: flex-start; gap: 0.8rem; font-weight: 300; border-bottom: 1px solid var(--border); }
+  .for-you-bullets li::before { content: ''; width: 20px; height: 20px; min-width: 20px; background: var(--sage-light); border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 10l4 4 6-6' stroke='%232D6A4F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; margin-top: 2px; }
+
+  /* ── FOR YOUR PEOPLE ──────────────────────────────── */
+  .for-people { background: var(--gold-light); border-top: 1px solid rgba(201,150,58,0.15); border-bottom: 1px solid rgba(201,150,58,0.15); padding: 7rem 6rem; }
+  .for-people-inner { max-width: 680px; margin: 0 auto; }
+  .for-people .section-eyebrow { color: var(--gold); }
+  .for-people .section-eyebrow::before { background: var(--gold); }
+  .for-people .section-headline { color: var(--earth); }
+  .for-people-body p { font-size: 1rem; line-height: 1.9; color: rgba(61,43,31,0.7); font-weight: 300; margin-bottom: 1.2rem; }
+  .for-people-callout { font-family: 'Lora', serif; font-size: 1.2rem; font-style: italic; color: var(--earth) !important; font-weight: 500 !important; }
+  .for-people .for-you-bullets li { color: var(--earth); border-bottom-color: rgba(201,150,58,0.15); }
+
+  /* ── RESPONSIVE ADDITIONS ─────────────────────────── */
+  @media (max-width: 900px) {
+    .who { padding: 5rem 2rem; }
+    .who-grid { grid-template-columns: 1fr; }
+    .together { padding: 5rem 2rem; }
+    .together-grid { grid-template-columns: 1fr; }
+    .benefits { padding: 5rem 2rem; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .how-works { padding: 5rem 2rem; }
+    .proc-step { width: 100%; }
+    .for-you { padding: 5rem 2rem; }
+    .for-people { padding: 5rem 2rem; }
+  }
+
+
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+  .pricing-card.featured { border-top: 3px solid var(--forest); }
+  @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+
+  .proof-list { display: flex; flex-direction: column; gap: 0; margin-top: 2.5rem; max-width: 800px; }
+  .proof-item { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.4rem 0; border-bottom: 1px solid var(--border); }
+  .proof-item:first-child { border-top: 1px solid var(--border); }
+  .proof-check { width: 28px; height: 28px; min-width: 28px; background: var(--sage-light); border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 12l5 5L19 7' stroke='%232D6A4F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; margin-top: 3px; }
+  .proof-text strong { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--forest); display: block; margin-bottom: 0.35rem; }
+  .proof-text span { font-size: 0.9rem; color: var(--warm-grey); line-height: 1.7; font-weight: 300; }
+
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Mallee</div>
+  <div class="nav-links">
+    <a href="mallee_participants.html" class="nav-link">For participants</a>
+    <a href="mallee_families.html" class="nav-link nav-link--active">For families</a>
+    <a href="mallee_coordinators.html" class="nav-link">For support coordinators</a>
+  </div>
+  <a href="#signup" class="nav-cta">Join Waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">For families &amp; informal carers</div>
+    <h1 class="hero-headline">
+      You didn't sign up<br>for the <em>paperwork.</em>
+    </h1>
+    <p class="hero-sub">
+      You show up because you love them. The morning routine, the appointments, the phone calls, the worry. And then, on top of all of it, you're expected to document everything in the language of a system you didn't choose. Mallee takes that second job away.
+    </p>
+    <div class="hero-actions">
+      <a href="#signup" class="btn-primary">Join Waitlist</a>
+      <a href="#how" class="btn-ghost">See how it works →</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="mallee_hero.jpg" alt="A family member pushing Dad along the waterfront" />
+    <div class="hero-image-badge">
+      <div class="badge-icon">🤝</div>
+      <div class="badge-text">
+        <strong>One call, twice a week</strong>
+        Just talk. Mallee takes care of the rest.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOGETHER -->
+<section class="together" id="together">
+  <div class="together-inner">
+    <h2 class="section-headline reveal">You show up because<br>you love them.<br><em>Not because it's your job.</em></h2>
+    <h2 class="section-headline reveal" style="transition-delay:0.15s">But somewhere along the way,<br><em>it became one.</em></h2>
+    <h2 class="section-headline reveal" style="transition-delay:0.3s">Mallee takes the second job away,<br><em>with one gentle call, twice a week.</em></h2>
+  </div>
+</section>
+
+<!-- BENEFITS / HOW IT WORKS -->
+<section class="benefits" id="how">
+  <div class="benefits-inner">
+    <div class="section-eyebrow reveal">Meet Mallee</div>
+    <h2 class="section-headline reveal">Evidence collection,<br><em>on autopilot.</em></h2>
+
+    <div class="process-explainer reveal">
+      <div class="process-row">
+
+        <div class="proc-step">
+          <div class="proc-num">01</div>
+          <h3 class="proc-title">Tell Mallee who supports you</h3>
+          <p class="proc-body">Share the people who show up for you: family, friends, whoever's in your corner. Or they can tell us themselves — Mallee will take it from there.</p>
+        </div>
+
+        <div class="proc-arrow" aria-hidden="true">
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="proc-step">
+          <div class="proc-num">02</div>
+          <h3 class="proc-title">One gentle call, twice a week</h3>
+          <p class="proc-body">Not a form. Not a system. Just a gentle five-minute conversation, the kind that feels like talking to someone who actually gets it.</p>
+          <div class="proc-examples">
+            <div class="proc-examples-label">Mallee sounds like this…</div>
+            <div class="proc-example-q">"What did they manage to do well or independently today with the right support in place?"</div>
+            <div class="proc-example-q">"How are you feeling in yourself, not just as a carer, but as a person?"</div>
+          </div>
+          <div class="proc-callout">
+            <p>There are no wrong answers. Mallee captures the full picture — and the data is owned by you. Yours to share, or keep private.</p>
+          </div>
+        </div>
+
+        <div class="proc-arrow" aria-hidden="true">
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="proc-step">
+          <div class="proc-num">03</div>
+          <h3 class="proc-title">Mallee builds the Care Record</h3>
+          <p class="proc-body">While you're just talking, Mallee is quietly capturing what matters — saving your family valuable time without anyone lifting a finger.</p>
+        </div>
+
+        <div class="proc-arrow" aria-hidden="true">
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="proc-step proc-step--highlight">
+          <div class="proc-num">04</div>
+          <h3 class="proc-title">Your Care Record is ready, whenever you need it</h3>
+          <p class="proc-body">The evidence the plan review needs. The documentation the Allied Health team can use. Organised and ready — no preparation, no explaining.</p>
+        </div>
+
+      </div>
+
+      <p class="process-tagline">Less time on the system.<br><em>More time with each other.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- CARE RECORD PREVIEW -->
+<section class="care-preview">
+  <div class="care-preview-inner">
+    <div class="care-preview-intro reveal">
+      <div class="section-eyebrow">Your Care Record</div>
+      <h2>This is what your<br><em>Care Record looks like.</em></h2>
+      <p>After 13 weeks of gentle check-ins, here's the picture Mallee builds, automatically, in the language your NDIS assessor needs. This is what gets built for you — you never have to touch any of it.</p>
+    </div>
+
+    <div class="browser-scroll-wrapper reveal" style="transition-delay:0.15s">
+    <div class="browser-chrome">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.mallee.ai/care-record/james-okafor</div>
+      </div>
+      <div class="browser-content">
+        <p class="cr-page-label">Care Record: Sample Document</p>
+        <div class="cr-doc">
+          <div class="cr-header">
+            <div>
+              <div class="cr-brand">Mallee</div>
+              <div class="cr-title">Care Record</div>
+              <div class="cr-subtitle">Informal Support Documentation — I-CAN Ready</div>
+            </div>
+            <div style="text-align:right">
+              <div class="cr-period">Reporting period</div>
+              <div class="cr-dates">1 Sept — 30 Nov 2025</div>
+              <div class="cr-ref">REF: MAL-2025-4471</div>
+            </div>
+          </div>
+          <div class="cr-participant-band">
+            <div><div class="cr-participant-label">Participant</div><div class="cr-participant-value">James Okafor</div></div>
+            <div><div class="cr-participant-label">NDIS Number</div><div class="cr-participant-value">43 0081 2294</div></div>
+          </div>
+          <div class="cr-body">
+            <div class="cr-section">
+              <div class="cr-section-header">
+                <div class="cr-section-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <div class="cr-section-title">Support Summary</div>
+                <div class="cr-section-domain">13 weeks · 26 check-ins completed</div>
+              </div>
+              <div class="cr-summary-grid">
+                <div class="cr-summary-cell"><div class="cr-summary-num">312</div><div class="cr-summary-unit">total hours of support</div></div>
+                <div class="cr-summary-cell"><div class="cr-summary-num">4</div><div class="cr-summary-unit">support people documented</div></div>
+                <div class="cr-summary-cell"><div class="cr-summary-num">24 hrs</div><div class="cr-summary-unit">average per week</div></div>
+              </div>
+              <div class="cr-table-wrap">
+              <table class="cr-table">
+                <thead><tr><th>Support Person</th><th>Relationship</th><th>Primary Activities</th><th>Avg Hrs/Week</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="cr-supporter-name">Adaeze Okafor</span></td><td><span style="font-size:0.78rem;font-weight:300">Spouse</span></td><td>Personal care, medication management, meal preparation, transport to appointments</td><td><span class="cr-hours-pill">14.5 hrs</span></td></tr>
+                  <tr><td><span class="cr-supporter-name">Ruth Okafor</span></td><td><span style="font-size:0.78rem;font-weight:300">Mother</span></td><td>Domestic assistance, emotional support, school pickup when Adaeze at appointments</td><td><span class="cr-hours-pill">5.0 hrs</span></td></tr>
+                  <tr><td><span class="cr-supporter-name">Daniel Okafor</span></td><td><span style="font-size:0.78rem;font-weight:300">Brother</span></td><td>Home maintenance, transport, social outings</td><td><span class="cr-hours-pill">3.0 hrs</span></td></tr>
+                  <tr><td><span class="cr-supporter-name">Priya Sharma</span></td><td><span style="font-size:0.78rem;font-weight:300">Neighbour / Friend</span></td><td>Ad hoc transport, grocery assistance, welfare check-ins</td><td><span class="cr-hours-pill">1.5 hrs</span></td></tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <div class="cr-section">
+              <div class="cr-section-header">
+                <div class="cr-section-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                <div class="cr-section-title">Notable Check-in Observations</div>
+                <div class="cr-section-domain">Extracted from 26 conversations</div>
+              </div>
+              <ul class="cr-notes-list">
+                <li class="cr-note-item"><span class="cr-note-date">14 Nov 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">Adaeze noted support hours increased to approximately 22 hours that week. No formal support was available during this period and Adaeze managed the additional tasks without assistance.</span></li>
+                <li class="cr-note-item"><span class="cr-note-date">31 Oct 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">James reported confidence managing communication with his GP has improved since Adaeze began attending appointments. Information retention remains a challenge and Adaeze provides verbal recap support.</span></li>
+                <li class="cr-note-item"><span class="cr-note-date">9 Oct 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">Ruth took over primary domestic support for two weeks while Adaeze managed a family obligation. Transition was managed without formal respite. Coordination required significant time from James to brief Ruth on routines.</span></li>
+                <li class="cr-note-item"><span class="cr-note-date">18 Sept 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">James noted he had declined two social invitations due to transport uncertainty. Daniel has begun providing a regular Sunday outing which James describes as important to his sense of normalcy.</span></li>
+              </ul>
+            </div>
+            <div class="cr-section">
+              <div class="cr-section-header">
+                <div class="cr-section-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <div class="cr-section-title">I-CAN Domain Coverage</div>
+                <div class="cr-section-domain">Informal support evidenced across domains</div>
+              </div>
+              <div class="cr-ican-grid">
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Daily Activities</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Communication</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Social & Community</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Home & Living</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain"><div class="cr-ican-label">Learning & Work</div><div class="cr-ican-empty"></div></div>
+              </div>
+              <p style="font-size:0.68rem;color:#6B6560;margin-top:0.6rem;font-weight:300;font-style:italic;">Informal support documented across 4 of 5 I-CAN functional domains.</p>
+            </div>
+            <div class="cr-divider"></div>
+            <p style="font-size:0.72rem;color:#6B6560;font-weight:300;line-height:1.65;"><strong style="color:#1D4A2F;font-weight:500;">For assessors:</strong> This Care Record was generated by Mallee through structured fortnightly voice check-ins with the participant's informal support network. All data reflects self-reported responses to structured check-in questions and does not constitute clinical assessment or diagnosis. Check-in transcripts are available on request.</p>
+          </div>
+          <div class="cr-doc-footer">
+            <div class="cr-footer-note">Generated by Mallee · Australian data sovereignty · Privacy Act 1988 compliant</div>
+            <div class="cr-footer-brand">Mallee</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="browser-scroll-fade"></div>
+      <div class="browser-scroll-hint">
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll to explore
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I-CAN BAND -->
+<section class="ican-band">
+  <div class="ican-inner reveal">
+    <div class="section-eyebrow">For NDIS families preparing for I-CAN</div>
+    <h2 class="section-headline">Your I-CAN assessment is coming.<br><em>Walk in with evidence, not estimates.</em></h2>
+    <p class="ican-body">From mid-2026, every NDIS participant will go through a new support needs assessment. Section 34(1)(e) of the NDIS Act requires the NDIA to consider what is reasonable to expect from families and family networks. This means the assessor will ask about your family care arrangements. Mallee removes the stress of a moment-in-time interview, ensuring you can explain your support needs with months of structured evidence behind you.</p>
+    <p class="ican-body" style="margin-top:1rem;">Aligned with Australia's National Carer Strategy 2024–2034.</p>
+  </div>
+</section>
+
+<!-- WHAT MAKES MALLEE DIFFERENT -->
+<section class="how-works" id="how-works">
+  <div class="how-works-inner">
+    <div class="section-eyebrow reveal">What makes Mallee different</div>
+    <h2 class="section-headline reveal">Less paperwork.<br><em>More Sunday dinners.</em></h2>
+    <div class="proof-list">
+      <div class="proof-item reveal">
+        <div class="proof-check"></div>
+        <div class="proof-text">
+          <strong>A gentle way to check in with your support network</strong>
+          <span>Mallee calls your people. One quick call, twice a week. They talk, Mallee listens, and everything that matters gets captured without anyone having to write a single thing down.</span>
+        </div>
+      </div>
+      <div class="proof-item reveal" style="transition-delay:0.1s">
+        <div class="proof-check"></div>
+        <div class="proof-text">
+          <strong>Your Care Record builds itself in the background</strong>
+          <span>Every conversation adds to the picture. By the time your I-CAN assessment arrives, you have months of structured evidence. Not a memory test.</span>
+        </div>
+      </div>
+      <div class="proof-item reveal" style="transition-delay:0.2s">
+        <div class="proof-check"></div>
+        <div class="proof-text">
+          <strong>Your family can be family, not just your care team</strong>
+          <span>When the documentation takes care of itself, the relationship can go back to being what it was, before the NDIS made it complicated.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR YOUR PEOPLE -->
+<section class="for-people">
+  <div class="for-people-inner">
+    <div class="for-people-content reveal">
+      <div class="section-eyebrow">For your people</div>
+      <h2 class="section-headline">You didn't sign up<br><em>for the paperwork.</em></h2>
+      <div class="for-people-body">
+        <p>You show up because you love them. The morning routine, the appointments, the phone calls, the worry. You do it without being asked. And then, on top of all of it, you're expected to remember and document everything, in the language of a system you didn't choose and weren't trained to navigate.</p>
+        <p class="for-people-callout">That feeling of always being behind? It's not just you. It's the system.</p>
+        <p>Mallee takes the second job away. One gentle call, twice a week. While you're just talking, about your week, about how they're going, Mallee is quietly turning what you do into the documented record your family deserves. So you can spend your time being a mum, a partner, a mate. Not a record keeper.</p>
+      </div>
+    </div>
+    <ul class="for-you-bullets">
+      <li>One quick call, twice a week. That's the entire ask.</li>
+      <li>What you do gets seen. Every hour, every act of care, on record.</li>
+      <li>Your conversations are private and never shared without your explicit permission.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-photo reveal">
+    <img src="mallee_about.jpg" alt="Sofia and her Dad" />
+  </div>
+  <div class="about-content reveal" style="transition-delay:0.15s">
+    <div class="section-eyebrow">Built from personal experience</div>
+    <h2 class="section-headline">The feeling of always<br><em>being behind.</em></h2>
+    <div class="about-body">
+      <p>My Dad has Corticobasal Degeneration. Progressive conditions don't get better. The trajectory is fixed. You stop spending your energy on paperwork and start spending it on the people you love.</p>
+      <p>What I kept hearing from families like mine was the same exhausting gap. There was always this feeling of being behind. Behind on the documentation, behind on the evidence, never quite able to prove what everyone could plainly see.</p>
+      <p>Mallee exists so that families like mine don't lose each other to that feeling. So the care is seen, counted, and sustained.</p>
+    </div>
+    <div class="about-sig">— Sofia</div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="purchase">
+  <div style="max-width:1000px;margin:0 auto">
+    <div class="section-eyebrow reveal">How to access Mallee</div>
+    <h2 class="section-headline reveal">Less admin.<br><em>More of the moments that matter.</em></h2>
+    <div class="pricing-grid">
+      <div class="pricing-card featured reveal">
+        <span class="pricing-badge">NDIS Funded</span>
+        <div class="pricing-title">Replacement Support</div>
+        <div class="pricing-price">$0 <span>out of pocket for NDIS participants</span></div>
+        <p class="pricing-desc">Fund Mallee through your NDIS plan using replacement support, the same mechanism that funds assistive technology. We guide you through the application at onboarding.</p>
+        <ul class="pricing-features">
+          <li>Two check-ins per week from day one</li>
+          <li>Full Care Record generated automatically</li>
+          <li>I-CAN domain mapping included</li>
+          <li>Pending Registration Group 0124</li>
+        </ul>
+        <a href="#signup" class="btn-primary" style="display:block;text-align:center;">Join Waitlist</a>
+      </div>
+      <div class="pricing-card reveal" style="transition-delay:0.15s">
+        <span class="pricing-badge" style="background:var(--cream);color:var(--warm-grey);">Self Funded</span>
+        <div class="pricing-title">Out of Pocket</div>
+        <div class="pricing-price">$49 <span>/ month</span></div>
+        <p class="pricing-desc">Not yet on the NDIS, or prefer to get started straight away? Pay directly and begin building your Care Record today. No lock-in, cancel anytime.</p>
+        <ul class="pricing-features">
+          <li>Two check-ins per week from day one</li>
+          <li>Full Care Record generated automatically</li>
+          <li>I-CAN domain mapping included</li>
+          <li>Switch to NDIS funding at any time</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#signup" class="btn-primary" style="display:block;text-align:center;background:var(--moss);">Join Waitlist</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="signup">
+  <div style="max-width:700px;margin:0 auto">
+    <h2 class="cta-headline reveal">You've been doing both jobs.<br><em>Let Mallee take one back.</em></h2>
+    <p class="cta-sub reveal">Stop carrying the second job. Mallee handles the evidence, the documentation, the Care Record — so you can spend your energy on the people you love.<br><br>One quick call, twice a week. No apps, no paperwork, no training required.</p>
+    <div class="cta-form reveal">
+      <input type="email" class="cta-input" placeholder="Your email address">
+      <button class="cta-submit">Join Waitlist</button>
+    </div>
+    <p class="cta-note reveal">No credit card required. Australian data only. Cancel anytime.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Mallee</div>
+  <div class="footer-note">Australian data sovereignty. Privacy Act 1988 compliant. NDIS registration pending. Aligned with the National Carer Strategy 2024–2034.</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
