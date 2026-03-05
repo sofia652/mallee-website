@@ -1497,12 +1497,16 @@
   </div>
 </div>
 <script>
+  if (localStorage.getItem('mallee_auth') === 'true') {
+    document.getElementById('password-gate').style.display = 'none';
+  }
   document.getElementById('pw-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') checkPassword();
   });
   function checkPassword() {
     var val = document.getElementById('pw-input').value;
     if (val === 'Sunday') {
+      localStorage.setItem('mallee_auth', 'true');
       document.getElementById('password-gate').style.display = 'none';
     } else {
       document.getElementById('pw-error').textContent = 'Incorrect password. Try again.';
