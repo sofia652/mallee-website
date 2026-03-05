@@ -67,6 +67,23 @@
   }
   .nav-cta:hover { background: var(--moss); }
 
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+  .nav-link {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--warm-grey);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .nav-link:hover { color: var(--forest); background: var(--sage-light); }
+  .nav-link--active { color: var(--forest); font-weight: 500; background: var(--sage-light); }
+
   /* ── HERO ─────────────────────────────────────────── */
   .hero {
     min-height: 100vh;
@@ -1420,6 +1437,11 @@
 <!-- NAV -->
 <nav>
   <div class="logo">Mallee</div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link nav-link--active">For participants</a>
+    <a href="mallee_families.html" class="nav-link">For families</a>
+    <a href="mallee_coordinators.html" class="nav-link">For support coordinators</a>
+  </div>
   <a href="#signup" class="nav-cta">Join Waitlist</a>
 </nav>
 
