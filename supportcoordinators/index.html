@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mallee | Sustain the people that care for you</title>
+<title>Mallee | For support coordinators</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -55,18 +55,6 @@
     letter-spacing: 0.04em;
   }
 
-  .nav-cta {
-    background: var(--forest);
-    color: white;
-    padding: 0.6rem 1.4rem;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--moss); }
-
   .nav-links {
     display: flex;
     gap: 0.25rem;
@@ -83,6 +71,18 @@
   }
   .nav-link:hover { color: var(--forest); background: var(--sage-light); }
   .nav-link--active { color: var(--forest); font-weight: 500; background: var(--sage-light); }
+
+  .nav-cta {
+    background: var(--forest);
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--moss); }
 
   /* ── HERO ─────────────────────────────────────────── */
   .hero {
@@ -1384,6 +1384,48 @@
     font-style: italic;
   }
 
+  .proc-examples {
+    margin-top: 1.2rem;
+    background: white;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .proc-examples-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.2rem;
+  }
+  .proc-example-q {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--forest);
+    line-height: 1.55;
+    padding-left: 0.8rem;
+    border-left: 2px solid var(--sage-light);
+  }
+
+  .proc-callout {
+    margin-top: 1.4rem;
+    background: var(--forest);
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem;
+  }
+  .proc-callout p {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.65;
+    margin: 0;
+  }
+
   /* ── FOR YOU ──────────────────────────────────────── */
   .for-you { background: var(--cream); padding: 7rem 6rem; }
   .for-you-inner { max-width: 680px; margin: 0 auto; }
@@ -1475,115 +1517,94 @@
 <nav>
   <div class="logo">Mallee</div>
   <div class="nav-links">
-    <a href="/" class="nav-link nav-link--active">For participants</a>
+    <a href="/" class="nav-link">For participants</a>
     <a href="/families/" class="nav-link">For families</a>
-    <a href="/supportcoordinators/" class="nav-link">For support coordinators</a>
+    <a href="/supportcoordinators/" class="nav-link nav-link--active">For support coordinators</a>
   </div>
-  <a href="#signup" class="nav-cta">Join Waitlist</a>
+  <a href="#signup" class="nav-cta">Get in touch</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">For NDIS participants & their families preparing for I-CAN</div>
+    <div class="hero-eyebrow">For support coordinators</div>
     <h1 class="hero-headline">
-      Stop proving<br>what everyone<br><em>can see.</em>
+      Your clients need<br>evidence. <em>Not just<br>a good memory.</em>
     </h1>
     <p class="hero-sub">
-      Living with a disability, or loving someone who does, comes with a hidden second job. Collecting evidence. Filing paperwork. Navigating a system that never quite sees the full picture. Mallee does that job for you. One quick call, twice a week. Evidence collection, on autopilot.
+      From mid-2026, every participant you support will face an I-CAN assessment. Section 34(1)(e) requires assessors to consider what's reasonable to expect from families and informal networks. Mallee builds that evidence automatically — one gentle call, twice a week — so your clients walk in prepared.
     </p>
     <div class="hero-actions">
-      <a href="#signup" class="btn-primary">Join Waitlist</a>
+      <a href="#signup" class="btn-primary">Get in touch</a>
       <a href="#how" class="btn-ghost">See how it works →</a>
     </div>
   </div>
   <div class="hero-image">
-    <img src="mallee_hero.jpg" alt="A family member pushing Dad along the waterfront" />
+    <img src="../mallee_hero.jpg" alt="A family member pushing Dad along the waterfront" />
     <div class="hero-image-badge">
       <div class="badge-icon">📋</div>
       <div class="badge-text">
-        <strong>Care Record ready</strong>
-        Two conversations a week. Everything documented.
+        <strong>I-CAN ready evidence</strong>
+        Structured, contemporaneous, transcript-backed.
       </div>
     </div>
   </div>
 </section>
 
-<!-- TOGETHER -->
-<section class="together" id="together">
-  <div class="together-inner">
-    <h2 class="section-headline reveal">Living with disability,<br>or loving someone who does,<br><em>comes with a second job.</em></h2>
-    <h2 class="section-headline reveal" style="transition-delay:0.15s">Gathering evidence. <nobr>Chasing paperwork.</nobr><br><em>Navigating a system that can't see you.</em></h2>
-    <h2 class="section-headline reveal" style="transition-delay:0.3s">Mallee takes that second job away,<br><em>with one gentle call, twice a week.</em></h2>
-  </div>
-</section>
-
-<!-- BENEFITS -->
+<!-- BENEFITS / HOW IT WORKS -->
 <section class="benefits" id="how">
   <div class="benefits-inner">
-    <div class="section-eyebrow reveal">Meet Mallee</div>
-    <h2 class="section-headline reveal">Evidence collection,<br><em>on autopilot.</em></h2>
+    <div class="section-eyebrow reveal">How Mallee works</div>
+    <h2 class="section-headline reveal">Built around<br><em>the I-CAN framework.</em></h2>
 
-    <!-- PROCESS EXPLAINER -->
     <div class="process-explainer reveal">
-
       <div class="process-row">
 
-        <!-- STEP 01 -->
         <div class="proc-step">
           <div class="proc-num">01</div>
-          <h3 class="proc-title">Tell Mallee who supports you</h3>
-          <p class="proc-body">Share the people who show up for you: family, friends, whoever's in your corner. Mallee will take it from there.</p>
+          <h3 class="proc-title">Participant nominates their support network</h3>
+          <p class="proc-body">The participant shares the family members, friends, and informal carers who support them. Each person is enrolled directly — no coordinator admin required.</p>
         </div>
 
-        <!-- ARROW 1→2 -->
         <div class="proc-arrow" aria-hidden="true">
-          <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
 
-        <!-- STEP 02 -->
         <div class="proc-step">
           <div class="proc-num">02</div>
-          <h3 class="proc-title">One gentle call, twice a week</h3>
-          <p class="proc-body">Not a form. Not a system. Just a gentle five-minute conversation, the kind that feels like talking to someone who actually gets it.</p>
+          <h3 class="proc-title">Mallee checks in, twice a week</h3>
+          <p class="proc-body">A structured five-minute voice conversation with each support person. Contemporaneous, consistent, and captured in the participant's own words.</p>
+          <div class="proc-examples">
+            <div class="proc-examples-label">Mallee sounds like this…</div>
+            <div class="proc-example-q">"What did they manage to do well or independently today with the right support in place?"</div>
+            <div class="proc-example-q">"How are you feeling in yourself, not just as a carer, but as a person?"</div>
+          </div>
         </div>
 
-        <!-- ARROW 2→3 -->
         <div class="proc-arrow" aria-hidden="true">
-          <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
 
-        <!-- STEP 03 -->
         <div class="proc-step">
           <div class="proc-num">03</div>
-          <h3 class="proc-title">Mallee builds your Care Record</h3>
-          <p class="proc-body">While you're just talking, Mallee is quietly capturing what matters, saving your valuable time without you lifting a finger.</p>
+          <h3 class="proc-title">Care Record builds automatically</h3>
+          <p class="proc-body">Every conversation is structured, timestamped, and mapped to I-CAN functional domains. Support hours, carer observations, and notable events are captured across the full 13-week period.</p>
         </div>
 
-        <!-- ARROW 3→4 -->
         <div class="proc-arrow" aria-hidden="true">
-          <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M2 2L12 13L22 2" stroke="#52B788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
 
-        <!-- STEP 04 -->
         <div class="proc-step proc-step--highlight">
           <div class="proc-num">04</div>
-          <h3 class="proc-title">Your Care Record is ready, whenever you need it</h3>
-          <p class="proc-body">The evidence your plan review needs. The documentation your Allied Health team can use. Organised and ready, no preparation, no explaining.</p>
+          <h3 class="proc-title">Evidence is ready before the assessment</h3>
+          <p class="proc-body">Your client arrives at their I-CAN assessment with months of structured, contemporaneous evidence — not a reconstruction. Transcripts available on request.</p>
         </div>
 
-      </div><!-- .process-row -->
+      </div>
 
-      <p class="process-tagline">Less time on the system.<br><em>More time with each other.</em></p>
-
-    </div><!-- .process-explainer -->
-
+      <p class="process-tagline">Less preparation before assessment day.<br><em>More confidence walking in.</em></p>
+    </div>
   </div>
 </section>
 
@@ -1591,26 +1612,20 @@
 <section class="care-preview">
   <div class="care-preview-inner">
     <div class="care-preview-intro reveal">
-      <div class="section-eyebrow">Your Care Record</div>
-      <h2>This is what your<br><em>Care Record looks like.</em></h2>
-      <p>After 13 weeks of gentle check-ins, here's the picture Mallee builds, automatically, in the language your NDIS assessor needs.</p>
+      <div class="section-eyebrow">The Care Record</div>
+      <h2>What your client<br><em>brings to assessment.</em></h2>
+      <p>Structured informal support documentation, mapped to I-CAN functional domains, generated automatically from 13 weeks of check-ins. Built in the language assessors need.</p>
     </div>
 
     <div class="browser-scroll-wrapper reveal" style="transition-delay:0.15s">
     <div class="browser-chrome">
       <div class="browser-bar">
-        <div class="browser-dots">
-          <span></span><span></span><span></span>
-        </div>
+        <div class="browser-dots"><span></span><span></span><span></span></div>
         <div class="browser-url">app.mallee.ai/care-record/james-okafor</div>
       </div>
       <div class="browser-content">
-
         <p class="cr-page-label">Care Record: Sample Document</p>
-
         <div class="cr-doc">
-
-          <!-- HEADER -->
           <div class="cr-header">
             <div>
               <div class="cr-brand">Mallee</div>
@@ -1623,168 +1638,69 @@
               <div class="cr-ref">REF: MAL-2025-4471</div>
             </div>
           </div>
-
-          <!-- PARTICIPANT BAND -->
           <div class="cr-participant-band">
-            <div>
-              <div class="cr-participant-label">Participant</div>
-              <div class="cr-participant-value">James Okafor</div>
-            </div>
-            <div>
-              <div class="cr-participant-label">NDIS Number</div>
-              <div class="cr-participant-value">43 0081 2294</div>
-            </div>
+            <div><div class="cr-participant-label">Participant</div><div class="cr-participant-value">James Okafor</div></div>
+            <div><div class="cr-participant-label">NDIS Number</div><div class="cr-participant-value">43 0081 2294</div></div>
           </div>
-
-          <!-- BODY -->
           <div class="cr-body">
-
-            <!-- SUPPORT SUMMARY -->
             <div class="cr-section">
               <div class="cr-section-header">
-                <div class="cr-section-icon">
-                  <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
+                <div class="cr-section-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
                 <div class="cr-section-title">Support Summary</div>
                 <div class="cr-section-domain">13 weeks · 26 check-ins completed</div>
               </div>
-
               <div class="cr-summary-grid">
-                <div class="cr-summary-cell">
-                  <div class="cr-summary-num">312</div>
-                  <div class="cr-summary-unit">total hours of support</div>
-                </div>
-                <div class="cr-summary-cell">
-                  <div class="cr-summary-num">4</div>
-                  <div class="cr-summary-unit">support people documented</div>
-                </div>
-                <div class="cr-summary-cell">
-                  <div class="cr-summary-num">24 hrs</div>
-                  <div class="cr-summary-unit">average per week</div>
-                </div>
+                <div class="cr-summary-cell"><div class="cr-summary-num">312</div><div class="cr-summary-unit">total hours of support</div></div>
+                <div class="cr-summary-cell"><div class="cr-summary-num">4</div><div class="cr-summary-unit">support people documented</div></div>
+                <div class="cr-summary-cell"><div class="cr-summary-num">24 hrs</div><div class="cr-summary-unit">average per week</div></div>
               </div>
-
               <div class="cr-table-wrap">
               <table class="cr-table">
-                <thead>
-                  <tr>
-                    <th>Support Person</th>
-                    <th>Relationship</th>
-                    <th>Primary Activities</th>
-                    <th>Avg Hrs/Week</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Support Person</th><th>Relationship</th><th>Primary Activities</th><th>Avg Hrs/Week</th></tr></thead>
                 <tbody>
-                  <tr>
-                    <td><span class="cr-supporter-name">Adaeze Okafor</span></td>
-                    <td><span style="font-size:0.78rem;font-weight:300">Spouse</span></td>
-                    <td>Personal care, medication management, meal preparation, transport to appointments</td>
-                    <td><span class="cr-hours-pill">14.5 hrs</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="cr-supporter-name">Ruth Okafor</span></td>
-                    <td><span style="font-size:0.78rem;font-weight:300">Mother</span></td>
-                    <td>Domestic assistance, emotional support, school pickup when Adaeze at appointments</td>
-                    <td><span class="cr-hours-pill">5.0 hrs</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="cr-supporter-name">Daniel Okafor</span></td>
-                    <td><span style="font-size:0.78rem;font-weight:300">Brother</span></td>
-                    <td>Home maintenance, transport, social outings</td>
-                    <td><span class="cr-hours-pill">3.0 hrs</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="cr-supporter-name">Priya Sharma</span></td>
-                    <td><span style="font-size:0.78rem;font-weight:300">Neighbour / Friend</span></td>
-                    <td>Ad hoc transport, grocery assistance, welfare check-ins</td>
-                    <td><span class="cr-hours-pill">1.5 hrs</span></td>
-                  </tr>
+                  <tr><td><span class="cr-supporter-name">Adaeze Okafor</span></td><td><span style="font-size:0.78rem;font-weight:300">Spouse</span></td><td>Personal care, medication management, meal preparation, transport to appointments</td><td><span class="cr-hours-pill">14.5 hrs</span></td></tr>
+                  <tr><td><span class="cr-supporter-name">Ruth Okafor</span></td><td><span style="font-size:0.78rem;font-weight:300">Mother</span></td><td>Domestic assistance, emotional support, school pickup when Adaeze at appointments</td><td><span class="cr-hours-pill">5.0 hrs</span></td></tr>
+                  <tr><td><span class="cr-supporter-name">Daniel Okafor</span></td><td><span style="font-size:0.78rem;font-weight:300">Brother</span></td><td>Home maintenance, transport, social outings</td><td><span class="cr-hours-pill">3.0 hrs</span></td></tr>
+                  <tr><td><span class="cr-supporter-name">Priya Sharma</span></td><td><span style="font-size:0.78rem;font-weight:300">Neighbour / Friend</span></td><td>Ad hoc transport, grocery assistance, welfare check-ins</td><td><span class="cr-hours-pill">1.5 hrs</span></td></tr>
                 </tbody>
               </table>
               </div>
             </div>
-
-            <!-- CHECK-IN NOTES -->
             <div class="cr-section">
               <div class="cr-section-header">
-                <div class="cr-section-icon">
-                  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
+                <div class="cr-section-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
                 <div class="cr-section-title">Notable Check-in Observations</div>
                 <div class="cr-section-domain">Extracted from 26 conversations</div>
               </div>
               <ul class="cr-notes-list">
-                <li class="cr-note-item">
-                  <span class="cr-note-date">14 Nov 2025</span>
-                  <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">Adaeze noted support hours increased to approximately 22 hours that week. No formal support was available during this period and Adaeze managed the additional tasks without assistance.</span>
-                </li>
-                <li class="cr-note-item">
-                  <span class="cr-note-date">31 Oct 2025</span>
-                  <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">James reported confidence managing communication with his GP has improved since Adaeze began attending appointments. Information retention remains a challenge and Adaeze provides verbal recap support.</span>
-                </li>
-                <li class="cr-note-item">
-                  <span class="cr-note-date">9 Oct 2025</span>
-                  <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">Ruth took over primary domestic support for two weeks while Adaeze managed a family obligation. Transition was managed without formal respite. Coordination required significant time from James to brief Ruth on routines.</span>
-                </li>
-                <li class="cr-note-item">
-                  <span class="cr-note-date">18 Sept 2025</span>
-                  <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">James noted he had declined two social invitations due to transport uncertainty. Daniel has begun providing a regular Sunday outing which James describes as important to his sense of normalcy.</span>
-                </li>
+                <li class="cr-note-item"><span class="cr-note-date">14 Nov 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">Adaeze noted support hours increased to approximately 22 hours that week. No formal support was available during this period and Adaeze managed the additional tasks without assistance.</span></li>
+                <li class="cr-note-item"><span class="cr-note-date">31 Oct 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">James reported confidence managing communication with his GP has improved since Adaeze began attending appointments. Information retention remains a challenge and Adaeze provides verbal recap support.</span></li>
+                <li class="cr-note-item"><span class="cr-note-date">9 Oct 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">Ruth took over primary domestic support for two weeks while Adaeze managed a family obligation. Transition was managed without formal respite. Coordination required significant time from James to brief Ruth on routines.</span></li>
+                <li class="cr-note-item"><span class="cr-note-date">18 Sept 2025</span><span class="cr-note-dot"></span><span class="cr-note-text">James noted he had declined two social invitations due to transport uncertainty. Daniel has begun providing a regular Sunday outing which James describes as important to his sense of normalcy.</span></li>
               </ul>
             </div>
-
-            <!-- I-CAN DOMAIN MAPPING -->
             <div class="cr-section">
               <div class="cr-section-header">
-                <div class="cr-section-icon">
-                  <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                </div>
+                <div class="cr-section-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
                 <div class="cr-section-title">I-CAN Domain Coverage</div>
                 <div class="cr-section-domain">Informal support evidenced across domains</div>
               </div>
               <div class="cr-ican-grid">
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Daily Activities</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Communication</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Social & Community</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Home & Living</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain">
-                  <div class="cr-ican-label">Learning & Work</div>
-                  <div class="cr-ican-empty"></div>
-                </div>
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Daily Activities</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Communication</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Social & Community</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain active"><div class="cr-ican-label">Home & Living</div><div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+                <div class="cr-ican-domain"><div class="cr-ican-label">Learning & Work</div><div class="cr-ican-empty"></div></div>
               </div>
               <p style="font-size:0.68rem;color:#6B6560;margin-top:0.6rem;font-weight:300;font-style:italic;">Informal support documented across 4 of 5 I-CAN functional domains. Evidence is sufficient to support assessment across Daily Activities, Communication, Social & Community Participation, and Home & Living.</p>
             </div>
-
             <div class="cr-divider"></div>
-
-            <p style="font-size:0.72rem;color:#6B6560;font-weight:300;line-height:1.65;">
-              <strong style="color:#1D4A2F;font-weight:500;">For assessors:</strong> This Care Record was generated by Mallee through structured fortnightly voice check-ins with the participant's informal support network. All data reflects self-reported responses to structured check-in questions and does not constitute clinical assessment or diagnosis. Check-in transcripts are available on request.
-            </p>
-
+            <p style="font-size:0.72rem;color:#6B6560;font-weight:300;line-height:1.65;"><strong style="color:#1D4A2F;font-weight:500;">For assessors:</strong> This Care Record was generated by Mallee through structured fortnightly voice check-ins with the participant's informal support network. All data reflects self-reported responses to structured check-in questions and does not constitute clinical assessment or diagnosis. Check-in transcripts are available on request.</p>
           </div>
-
-          <!-- FOOTER -->
           <div class="cr-doc-footer">
             <div class="cr-footer-note">Generated by Mallee · Australian data sovereignty · Privacy Act 1988 compliant</div>
             <div class="cr-footer-brand">Mallee</div>
           </div>
-
         </div>
       </div>
     </div>
@@ -1797,144 +1713,43 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <!-- I-CAN BAND -->
 <section class="ican-band">
   <div class="ican-inner reveal">
-    <div class="section-eyebrow">For NDIS families preparing for I-CAN</div>
-    <h2 class="section-headline">Your I-CAN assessment is coming.<br><em>Walk in with evidence, not estimates.</em></h2>
-    <p class="ican-body">From mid-2026, every NDIS participant will go through a new support needs assessment. Section 34(1)(e) of the NDIS Act requires the NDIA to consider what is reasonable to expect from families and family networks. This means the assessor will ask about your family care arrangements. Mallee removes the stress of a moment-in-time interview, ensuring you can explain your support needs with months of structured evidence behind you.</p>
-    <p class="ican-body" style="margin-top:1rem;">Aligned with Australia's National Carer Strategy 2024–2034.</p>
+    <div class="section-eyebrow">I-CAN assessments from mid-2026</div>
+    <h2 class="section-headline">Section 34(1)(e) requires<br><em>evidence of informal support.</em></h2>
+    <p class="ican-body">The new I-CAN assessment framework requires the NDIA to consider what is reasonable to expect from a participant's family and informal networks. That means assessors will ask about care arrangements that are currently undocumented. Mallee gives your clients the contemporaneous, structured evidence to answer that question with confidence — not estimates reconstructed from memory on assessment day.</p>
+    <p class="ican-body" style="margin-top:1rem;">Registration Group 0124 pending. Aligned with Australia's National Carer Strategy 2024–2034.</p>
   </div>
 </section>
 
+<!-- WHAT MAKES MALLEE DIFFERENT -->
 <section class="how-works" id="how-works">
   <div class="how-works-inner">
     <div class="section-eyebrow reveal">What makes Mallee different</div>
-    <h2 class="section-headline reveal">Less paperwork.<br><em>More Sunday dinners.</em></h2>
-
+    <h2 class="section-headline reveal">Built for the evidence gap<br><em>your clients are walking into.</em></h2>
     <div class="proof-list">
       <div class="proof-item reveal">
         <div class="proof-check"></div>
         <div class="proof-text">
-          <strong>A gentle way to check in with your support network</strong>
-          <span>Mallee calls your people. One quick call, twice a week. They talk, Mallee listens, and everything that matters gets captured without anyone having to write a single thing down.</span>
+          <strong>Contemporaneous, not reconstructed</strong>
+          <span>Every check-in is timestamped and structured at the time it happens. When your client's assessment arrives, their evidence is already months old — in the best possible way.</span>
         </div>
       </div>
       <div class="proof-item reveal" style="transition-delay:0.1s">
         <div class="proof-check"></div>
         <div class="proof-text">
-          <strong>Your Care Record builds itself in the background</strong>
-          <span>Every conversation adds to the picture. By the time your I-CAN assessment arrives, you have months of structured evidence. Not a memory test.</span>
+          <strong>Mapped to I-CAN functional domains</strong>
+          <span>Care Records are structured around the five I-CAN domains. Evidence is presented in the language assessors use, reducing the interpretive burden on your client and their family.</span>
         </div>
       </div>
       <div class="proof-item reveal" style="transition-delay:0.2s">
         <div class="proof-check"></div>
         <div class="proof-text">
-          <strong>Your family can be family, not just your care team</strong>
-          <span>When the documentation takes care of itself, the relationship can go back to being what it was, before the NDIS made it complicated.</span>
+          <strong>No admin burden on your caseload</strong>
+          <span>Mallee runs independently once a participant is enrolled. There's no ongoing coordination required from you — and no new paperwork for the families you support.</span>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOR YOU -->
-<section class="for-you" id="for-you">
-  <div class="for-you-inner">
-    <div class="for-you-content reveal">
-      <div class="section-eyebrow">For you</div>
-      <h2 class="section-headline">You're already doing<br><em>two jobs.</em></h2>
-      <div class="for-you-body">
-        <p>Managing your condition. Coordinating your supports. And somewhere on top of all of that, collecting evidence, preparing for assessments, trying to document informal care that everyone can see but nobody's recording. That second job is exhausting. And it shouldn't be yours to carry.</p>
-        <p>Your support network, your mum, your partner, the neighbour who drives you on Tuesdays, is probably the most important part of your care. And it's almost certainly the least documented. Mallee checks in with your people, gently, twice a week, and builds the evidence record quietly in the background. So when your I-CAN assessment arrives, you walk in with months of proof. Not a memory test.</p>
-      </div>
-      <ul class="for-you-bullets">
-        <li>Your support network stays visible, your funding reflects reality</li>
-        <li>Months of documented evidence, not a single moment-in-time interview</li>
-        <li>No chasing paperwork, no reconstructing history, no drowning in the admin of your own condition</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- FOR YOUR PEOPLE -->
-<section class="for-people">
-  <div class="for-people-inner">
-    <div class="for-people-content reveal">
-      <div class="section-eyebrow">For your people</div>
-      <h2 class="section-headline">You didn't sign up<br><em>for the paperwork.</em></h2>
-      <div class="for-people-body">
-        <p>You show up because you love them. The morning routine, the appointments, the phone calls, the worry. You do it without being asked. And then, on top of all of it, you're expected to remember and document everything, in the language of a system you didn't choose and weren't trained to navigate.</p>
-        <p class="for-people-callout">That feeling of always being behind? It's not just you. It's the system.</p>
-        <p>Mallee takes the second job away. One gentle call, twice a week. While you're just talking, about your week, about how they're going, Mallee is quietly turning what you do into the documented record your family deserves. So you can spend your time being a mum, a partner, a mate. Not a record keeper.</p>
-      </div>
-      </div>
-      <ul class="for-you-bullets">
-        <li>One quick call, twice a week. That's the entire ask.</li>
-        <li>What you do gets seen. Every hour, every act of care, on record.</li>
-        <li>Your wellbeing is recorded, alongside the participant's.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-
-<!-- ABOUT -->
-<section class="about">
-  <div class="about-photo reveal">
-    <img src="mallee_about.jpg" alt="A family member pushing Dad along the waterfront" />
-  </div>
-  <div class="about-content reveal" style="transition-delay:0.15s">
-    <div class="section-eyebrow">Built from personal experience</div>
-    <h2 class="section-headline">The feeling of always<br><em>being behind.</em></h2>
-    <div class="about-body">
-      <p>My Dad has Corticobasal Degeneration. Progressive conditions don't get better. The trajectory is fixed. You stop spending your energy on paperwork and start spending it on the people you love.</p>
-      <p>What I kept hearing from families like mine was the same exhausting gap. There was always this feeling of being behind. Behind on the documentation, behind on the evidence, never quite able to prove what everyone could plainly see.</p>
-      <p>Mallee exists so that families like mine don't lose each other to that feeling. So the care is seen, counted, and sustained.</p>
-    </div>
-    <div class="about-sig">— Sofia</div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing" id="purchase">
-  <div style="max-width:1000px;margin:0 auto">
-    <div class="section-eyebrow reveal">How to access Mallee</div>
-    <h2 class="section-headline reveal">Less admin.<br><em>More of the moments that matter.</em></h2>
-
-    <div class="pricing-grid">
-
-      <div class="pricing-card featured reveal">
-        <span class="pricing-badge">NDIS Funded</span>
-        <div class="pricing-title">Replacement Support</div>
-        <div class="pricing-price">$0 <span>out of pocket for NDIS participants</span></div>
-        <p class="pricing-desc">Fund Mallee through your NDIS plan using replacement support, the same mechanism that funds assistive technology. We guide you through the application at onboarding.</p>
-        <ul class="pricing-features">
-          <li>Two check-ins per week from day one</li>
-          <li>Full Care Record generated automatically</li>
-          <li>I-CAN domain mapping included</li>
-          <li>Pending Registration Group 0124</li>
-          <li>Your support coordinator can refer directly</li>
-        </ul>
-        <a href="#signup" class="btn-primary" style="display:block;text-align:center;">Join Waitlist</a>
-      </div>
-
-      <div class="pricing-card reveal" style="transition-delay:0.15s">
-        <span class="pricing-badge" style="background:var(--cream);color:var(--warm-grey);">Self Funded</span>
-        <div class="pricing-title">Out of Pocket</div>
-        <div class="pricing-price">$49 <span>/ month</span></div>
-        <p class="pricing-desc">Not yet on the NDIS, or prefer to get started straight away? Pay directly and begin building your Care Record today. No lock-in, cancel anytime.</p>
-        <ul class="pricing-features">
-          <li>Two check-ins per week from day one</li>
-          <li>Full Care Record generated automatically</li>
-          <li>I-CAN domain mapping included</li>
-          <li>Switch to NDIS funding at any time</li>
-          <li>Cancel anytime</li>
-        </ul>
-        <a href="#signup" class="btn-primary" style="display:block;text-align:center;background:var(--moss);">Join Waitlist</a>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1942,13 +1757,13 @@
 <!-- CTA -->
 <section class="cta-section" id="signup">
   <div style="max-width:700px;margin:0 auto">
-    <h2 class="cta-headline reveal">You've been doing both jobs.<br><em>Let Mallee take one back.</em></h2>
-    <p class="cta-sub reveal">Stop carrying the second job. Mallee handles the evidence, the documentation, the Care Record, so you can spend your energy on the people you love.<br><br>One quick call, twice a week. No apps, no paperwork, no training required.</p>
+    <h2 class="cta-headline reveal">Interested in Mallee<br><em>for your caseload?</em></h2>
+    <p class="cta-sub reveal">We're currently building out the coordinator experience. If you'd like to learn more about how Mallee works, discuss a participant referral, or be kept informed as we develop, get in touch directly.</p>
     <div class="cta-form reveal">
       <input type="email" class="cta-input" placeholder="Your email address">
-      <button class="cta-submit">Join Waitlist</button>
+      <button class="cta-submit">Get in touch</button>
     </div>
-    <p class="cta-note reveal">NDIS-funded. No credit card required. Australian data only. Cancel anytime.</p>
+    <p class="cta-note reveal">We'll respond within one business day. Australian data only.</p>
   </div>
 </section>
 
@@ -1961,10 +1776,7 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
