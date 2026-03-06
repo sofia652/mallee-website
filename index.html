@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mallee | Sustain the people that care for you</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1166,58 +1166,61 @@
 
   .cr-ican-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
     margin-bottom: 0.6rem;
   }
 
   .cr-ican-domain {
-    background: #FAF7F2;
-    border: 1px solid rgba(29,74,47,0.1);
-    border-radius: 8px;
-    padding: 0.7rem 0.5rem;
-    text-align: center;
-  }
-
-  .cr-ican-domain.active {
     background: #D8F3DC;
-    border-color: rgba(45,106,79,0.2);
+    border: 1px solid rgba(45,106,79,0.2);
+    border-radius: 8px;
+    padding: 0.8rem 0.6rem;
+    text-align: left;
   }
 
   .cr-ican-label {
-    font-size: 0.58rem;
+    font-size: 0.6rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #6B6560;
-    font-weight: 500;
-    line-height: 1.3;
-    margin-bottom: 0.35rem;
-  }
-
-  .cr-ican-domain.active .cr-ican-label {
+    letter-spacing: 0.05em;
     color: #2D6A4F;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
   }
 
-  .cr-ican-check {
-    width: 16px; height: 16px;
+  .cr-ican-coding {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.4rem;
+  }
+
+  .cr-ican-freq {
+    font-size: 0.65rem;
+    color: #1D4A2F;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .cr-ican-freq::before {
+    content: '';
+    width: 5px; height: 5px;
     border-radius: 50%;
     background: #52B788;
-    margin: 0 auto;
-    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
   }
 
-  .cr-ican-check svg {
-    width: 8px; height: 8px;
-    stroke: white;
-    fill: none;
-    stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.5;
-  }
-
-  .cr-ican-empty {
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    border: 1px solid rgba(29,74,47,0.15);
-    margin: 0 auto;
+  .cr-ican-level {
+    font-size: 0.62rem;
+    color: #3D2B1F;
+    font-weight: 300;
+    padding-left: 0.55rem;
+    border-left: 1.5px solid rgba(82,183,136,0.4);
+    margin-left: 0.18rem;
+    line-height: 1.4;
   }
 
   .cr-doc-footer {
@@ -1606,7 +1609,7 @@
         <div class="browser-dots">
           <span></span><span></span><span></span>
         </div>
-        <div class="browser-url">app.mallee.ai/care-record/james-okafor</div>
+        <div class="browser-url">app.mallee.ai/care-record/james-smith</div>
       </div>
       <div class="browser-content">
 
@@ -1619,12 +1622,12 @@
             <div>
               <div class="cr-brand">Mallee</div>
               <div class="cr-title">Care Record</div>
-              <div class="cr-subtitle">Informal Support Documentation — I-CAN Ready</div>
+              <div class="cr-subtitle">Informal Support Documentation</div>
             </div>
             <div style="text-align:right">
-              <div class="cr-period">Reporting period</div>
+              <div class="cr-period">Self-reporting period</div>
               <div class="cr-dates">1 Sept — 30 Nov 2025</div>
-              <div class="cr-ref">REF: MAL-2025-4471</div>
+              <div class="cr-ref">REF: MAL-2025-4472</div>
             </div>
           </div>
 
@@ -1632,7 +1635,7 @@
           <div class="cr-participant-band">
             <div>
               <div class="cr-participant-label">Participant</div>
-              <div class="cr-participant-value">James Okafor</div>
+              <div class="cr-participant-value">James Smith</div>
             </div>
             <div>
               <div class="cr-participant-label">NDIS Number</div>
@@ -1655,15 +1658,15 @@
 
               <div class="cr-summary-grid">
                 <div class="cr-summary-cell">
-                  <div class="cr-summary-num">312</div>
+                  <div class="cr-summary-num">3</div>
+                  <div class="cr-summary-unit">Family Care Members</div>
+                </div>
+                <div class="cr-summary-cell">
+                  <div class="cr-summary-num">364</div>
                   <div class="cr-summary-unit">total hours of support</div>
                 </div>
                 <div class="cr-summary-cell">
-                  <div class="cr-summary-num">4</div>
-                  <div class="cr-summary-unit">support people documented</div>
-                </div>
-                <div class="cr-summary-cell">
-                  <div class="cr-summary-num">24 hrs</div>
+                  <div class="cr-summary-num">28 hrs</div>
                   <div class="cr-summary-unit">average per week</div>
                 </div>
               </div>
@@ -1680,28 +1683,22 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="cr-supporter-name">Adaeze Okafor</span></td>
-                    <td><span style="font-size:0.78rem;font-weight:300">Spouse</span></td>
-                    <td>Personal care, medication management, meal preparation, transport to appointments</td>
-                    <td><span class="cr-hours-pill">14.5 hrs</span></td>
+                    <td><span class="cr-supporter-name">Adaeze Smith</span></td>
+                    <td><span style="font-size:0.78rem;font-weight:300">Wife</span></td>
+                    <td>Personal care, medication management and verbal prompting, attendance at all specialist and GP appointments with verbal recap of advice, meal preparation, household management, all correspondence with services and NDIS</td>
+                    <td><span class="cr-hours-pill">18.5 hrs</span></td>
                   </tr>
                   <tr>
-                    <td><span class="cr-supporter-name">Ruth Okafor</span></td>
-                    <td><span style="font-size:0.78rem;font-weight:300">Mother</span></td>
-                    <td>Domestic assistance, emotional support, school pickup when Adaeze at appointments</td>
-                    <td><span class="cr-hours-pill">5.0 hrs</span></td>
+                    <td><span class="cr-supporter-name">Simone Smith</span></td>
+                    <td><span style="font-size:0.78rem;font-weight:300">Daughter</span></td>
+                    <td>Daily check-ins, morning routine support, helps James get up and moving on difficult mornings, home maintenance, covers when Adaeze has commitments</td>
+                    <td><span class="cr-hours-pill">6.5 hrs</span></td>
                   </tr>
                   <tr>
-                    <td><span class="cr-supporter-name">Daniel Okafor</span></td>
+                    <td><span class="cr-supporter-name">Daniel Smith</span></td>
                     <td><span style="font-size:0.78rem;font-weight:300">Brother</span></td>
-                    <td>Home maintenance, transport, social outings</td>
+                    <td>Home maintenance, transport, regular weekend social outings</td>
                     <td><span class="cr-hours-pill">3.0 hrs</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="cr-supporter-name">Priya Sharma</span></td>
-                    <td><span style="font-size:0.78rem;font-weight:300">Neighbour / Friend</span></td>
-                    <td>Ad hoc transport, grocery assistance, welfare check-ins</td>
-                    <td><span class="cr-hours-pill">1.5 hrs</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -1714,72 +1711,49 @@
                 <div class="cr-section-icon">
                   <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 </div>
-                <div class="cr-section-title">Notable Check-in Observations</div>
-                <div class="cr-section-domain">Extracted from 26 conversations</div>
+                <div class="cr-section-title">Check-in Summary</div>
+                <div class="cr-section-domain">Self-reported · 26 conversations</div>
               </div>
               <ul class="cr-notes-list">
                 <li class="cr-note-item">
                   <span class="cr-note-date">14 Nov 2025</span>
                   <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">Adaeze noted support hours increased to approximately 22 hours that week. No formal support was available during this period and Adaeze managed the additional tasks without assistance.</span>
+                  <span class="cr-note-text">Adaeze reported the previous fortnight had been the hardest in months. She stayed home on four separate occasions, including missing a work commitment. She said: "I've stopped telling people I'll be there. It's easier than explaining why I can't come." On two mornings that week, Simone came over to help James get up and moving before Adaeze was available.</span>
                 </li>
                 <li class="cr-note-item">
                   <span class="cr-note-date">31 Oct 2025</span>
                   <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">James reported confidence managing communication with his GP has improved since Adaeze began attending appointments. Information retention remains a challenge and Adaeze provides verbal recap support.</span>
+                  <span class="cr-note-text">James described a specialist appointment where he had prepared questions but said he felt too overwhelmed in the room to ask them. He said he couldn't remember what the doctor had told him by the time they reached the car. Adaeze now attends every appointment and goes over what was said on the drive home. He said: "She's basically my memory now. I don't know what I'd do if she wasn't there."</span>
                 </li>
                 <li class="cr-note-item">
                   <span class="cr-note-date">9 Oct 2025</span>
                   <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">Ruth took over primary domestic support for two weeks while Adaeze managed a family obligation. Transition was managed without formal respite. Coordination required significant time from James to brief Ruth on routines.</span>
+                  <span class="cr-note-text">Simone covered the morning routine for the week while Adaeze was interstate for a family commitment. She said she arrived at 7am each day before her own work shift. By Wednesday she said she was exhausted and finding it hard to concentrate at work. There was no one else to call. Simone mentioned she had quietly put plans to move out on hold indefinitely.</span>
                 </li>
                 <li class="cr-note-item">
                   <span class="cr-note-date">18 Sept 2025</span>
                   <span class="cr-note-dot"></span>
-                  <span class="cr-note-text">James noted he had declined two social invitations due to transport uncertainty. Daniel has begun providing a regular Sunday outing which James describes as important to his sense of normalcy.</span>
+                  <span class="cr-note-text">James noted he had not left the house socially in three weeks. He declined two invitations: once because transport wasn't available, once because he didn't feel he could manage the environment without Adaeze, who was unwell. Daniel has since established a regular Sunday outing which James describes as "the one thing in the week that feels normal."</span>
+                </li>
+                <li class="cr-note-item">
+                  <span class="cr-note-date">4 Sept 2025</span>
+                  <span class="cr-note-dot"></span>
+                  <span class="cr-note-text">Simone reported she has started working from home two days a week to be available for her father on mornings when Adaeze has early commitments. She did not frame this as a sacrifice. She said it was just easier than worrying. She has not told her employer the reason.</span>
+                </li>
+                <li class="cr-note-item">
+                  <span class="cr-note-date">1 Sept 2025</span>
+                  <span class="cr-note-dot"></span>
+                  <span class="cr-note-text">First check-in. Adaeze described the previous six months as the hardest of their marriage, not because of James's condition but because of the paperwork. She said she spends more time documenting his care than she does sleeping. She was relieved to have somewhere to say that out loud.</span>
                 </li>
               </ul>
             </div>
 
-            <!-- I-CAN DOMAIN MAPPING -->
-            <div class="cr-section">
-              <div class="cr-section-header">
-                <div class="cr-section-icon">
-                  <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                </div>
-                <div class="cr-section-title">I-CAN Domain Coverage</div>
-                <div class="cr-section-domain">Informal support evidenced across domains</div>
-              </div>
-              <div class="cr-ican-grid">
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Daily Activities</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Communication</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Social & Community</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain active">
-                  <div class="cr-ican-label">Home & Living</div>
-                  <div class="cr-ican-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                </div>
-                <div class="cr-ican-domain">
-                  <div class="cr-ican-label">Learning & Work</div>
-                  <div class="cr-ican-empty"></div>
-                </div>
-              </div>
-              <p style="font-size:0.68rem;color:#6B6560;margin-top:0.6rem;font-weight:300;font-style:italic;">Informal support documented across 4 of 5 I-CAN functional domains. Evidence is sufficient to support assessment across Daily Activities, Communication, Social & Community Participation, and Home & Living.</p>
-            </div>
-
             <div class="cr-divider"></div>
 
-            <p style="font-size:0.72rem;color:#6B6560;font-weight:300;line-height:1.65;">
-              <strong style="color:#1D4A2F;font-weight:500;">For assessors:</strong> This Care Record was generated by Mallee through structured fortnightly voice check-ins with the participant's informal support network. All data reflects self-reported responses to structured check-in questions and does not constitute clinical assessment or diagnosis. Check-in transcripts are available on request.
-            </p>
+            <div style="background:#F0EDE8;border-left:3px solid #52B788;border-radius:0 8px 8px 0;padding:0.9rem 1.1rem;margin-top:0.5rem;">
+              <p style="font-size:0.72rem;color:#1D4A2F;font-weight:600;margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.07em;">About this document</p>
+              <p style="font-size:0.72rem;color:#6B6560;font-weight:300;line-height:1.7;margin:0;">This Care Record contains self-reported information only. All entries reflect what participants and their support network told Mallee during structured check-in conversations. Mallee does not observe, assess, diagnose, or classify support needs. No clinical judgment has been applied. This document is not a substitute for a formal support needs assessment and should not be interpreted as one. Check-in transcripts are available on request.</p>
+            </div>
 
           </div>
 
@@ -1790,6 +1764,257 @@
           </div>
 
         </div>
+
+        <!-- PAGE 2 -->
+        <p class="cr-page-label" style="margin-top:1.5rem;">Care Record: Page 2 of 2 — Support Trend Analysis</p>
+
+        <div class="cr-doc">
+          <div class="cr-header">
+            <div>
+              <div class="cr-brand">Mallee</div>
+              <div class="cr-title">Care Record</div>
+              <div class="cr-subtitle">Informal Support Documentation</div>
+            </div>
+            <div style="text-align:right">
+              <div class="cr-period">Self-reporting period</div>
+              <div class="cr-dates">1 Sept — 30 Nov 2025</div>
+              <div class="cr-ref">REF: MAL-2025-4472</div>
+            </div>
+          </div>
+
+          <div class="cr-body">
+            <div class="cr-section">
+              <!-- SELF-REPORTED COUNTS -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.2rem;">
+                <div style="background:#FAF7F2;border:1px solid rgba(29,74,47,0.1);border-radius:10px;padding:0.9rem 1.1rem;display:flex;flex-direction:column;gap:0.3rem;">
+                  <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:#6B6560;font-weight:500;">Self-reported · 13 weeks</div>
+                  <div style="display:flex;align-items:baseline;gap:0.5rem;margin-top:0.1rem;">
+                    <span style="font-family:'Lora',serif;font-size:1.8rem;font-weight:500;color:#1D4A2F;line-height:1;">4</span>
+                    <span style="font-size:0.72rem;color:#6B6560;font-weight:300;">falls or near-falls</span>
+                  </div>
+                  <div style="font-size:0.65rem;color:#6B6560;font-weight:300;line-height:1.5;border-top:1px solid rgba(29,74,47,0.08);padding-top:0.4rem;margin-top:0.2rem;">2 in the shower · 2 during transfers or around the home</div>
+                </div>
+                <div style="background:#FAF7F2;border:1px solid rgba(29,74,47,0.1);border-radius:10px;padding:0.9rem 1.1rem;display:flex;flex-direction:column;gap:0.3rem;">
+                  <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:#6B6560;font-weight:500;">Self-reported · 13 weeks</div>
+                  <div style="display:flex;align-items:baseline;gap:0.5rem;margin-top:0.1rem;">
+                    <span style="font-family:'Lora',serif;font-size:1.8rem;font-weight:500;color:#1D4A2F;line-height:1;">23</span>
+                    <span style="font-size:0.72rem;color:#6B6560;font-weight:300;">nights Adaeze was woken to assist</span>
+                  </div>
+                  <div style="font-size:0.65rem;color:#6B6560;font-weight:300;line-height:1.5;border-top:1px solid rgba(29,74,47,0.08);padding-top:0.4rem;margin-top:0.2rem;">Avg 1.8 nights per week across the reporting period</div>
+                </div>
+              </div>
+
+              <div class="cr-section-header">
+                <div class="cr-section-icon">
+                  <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div class="cr-section-title">Weekly Support Hours — 13 Week Trend</div>
+                <div class="cr-section-domain">Self-reported · 26 check-ins</div>
+              </div>
+
+              <!-- SVG Chart -->
+              <div style="margin-bottom:1.2rem;">
+                <svg viewBox="0 0 620 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+                  <line x1="40" y1="20" x2="610" y2="20" stroke="rgba(29,74,47,0.07)" stroke-width="1"/>
+                  <line x1="40" y1="50" x2="610" y2="50" stroke="rgba(29,74,47,0.07)" stroke-width="1"/>
+                  <line x1="40" y1="80" x2="610" y2="80" stroke="rgba(29,74,47,0.07)" stroke-width="1"/>
+                  <line x1="40" y1="110" x2="610" y2="110" stroke="rgba(29,74,47,0.07)" stroke-width="1"/>
+                  <line x1="40" y1="140" x2="610" y2="140" stroke="rgba(29,74,47,0.12)" stroke-width="1"/>
+                  <text x="34" y="23" text-anchor="end" font-size="7" fill="#6B6560" font-family="sans-serif">35</text>
+                  <text x="34" y="53" text-anchor="end" font-size="7" fill="#6B6560" font-family="sans-serif">30</text>
+                  <text x="34" y="83" text-anchor="end" font-size="7" fill="#6B6560" font-family="sans-serif">25</text>
+                  <text x="34" y="113" text-anchor="end" font-size="7" fill="#6B6560" font-family="sans-serif">20</text>
+                  <text x="34" y="143" text-anchor="end" font-size="7" fill="#6B6560" font-family="sans-serif">15</text>
+                  <!-- W1 24.5: Daniel 18px y=122, Simone 33px y=89, Adaeze 24px y=65 -->
+                  <rect x="44" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="44" y="89" width="28" height="33" fill="#52B788" rx="2"/>
+                  <rect x="44" y="65" width="28" height="24" fill="#2D6A4F" rx="2"/>
+                  <text x="58" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W1</text>
+                  <!-- W2 25.5 -->
+                  <rect x="90" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="90" y="89" width="28" height="33" fill="#52B788" rx="2"/>
+                  <rect x="90" y="59" width="28" height="30" fill="#2D6A4F" rx="2"/>
+                  <text x="104" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W2</text>
+                  <!-- W3 26 -->
+                  <rect x="136" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="136" y="86" width="28" height="36" fill="#52B788" rx="2"/>
+                  <rect x="136" y="56" width="28" height="30" fill="#2D6A4F" rx="2"/>
+                  <text x="150" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W3</text>
+                  <!-- W4 27 -->
+                  <rect x="182" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="182" y="86" width="28" height="36" fill="#52B788" rx="2"/>
+                  <rect x="182" y="50" width="28" height="36" fill="#2D6A4F" rx="2"/>
+                  <text x="196" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W4</text>
+                  <!-- W5 26 -->
+                  <rect x="228" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="228" y="86" width="28" height="36" fill="#52B788" rx="2"/>
+                  <rect x="228" y="56" width="28" height="30" fill="#2D6A4F" rx="2"/>
+                  <text x="242" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W5</text>
+                  <!-- W6 27.5 -->
+                  <rect x="274" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="274" y="83" width="28" height="39" fill="#52B788" rx="2"/>
+                  <rect x="274" y="47" width="28" height="36" fill="#2D6A4F" rx="2"/>
+                  <text x="288" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W6</text>
+                  <!-- W7 29 spike - Simone covers -->
+                  <line x1="334" y1="18" x2="334" y2="44" stroke="#C9963A" stroke-width="1" stroke-dasharray="3,2"/>
+                  <text x="334" y="14" text-anchor="middle" font-size="6" fill="#C9963A" font-family="sans-serif" font-weight="500">Adaeze away</text>
+                  <rect x="320" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="320" y="62" width="28" height="60" fill="#52B788" rx="2"/>
+                  <rect x="320" y="44" width="28" height="18" fill="#2D6A4F" rx="2"/>
+                  <text x="334" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W7</text>
+                  <!-- W8 28.5 -->
+                  <rect x="366" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="366" y="83" width="28" height="39" fill="#52B788" rx="2"/>
+                  <rect x="366" y="44" width="28" height="39" fill="#2D6A4F" rx="2"/>
+                  <text x="380" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W8</text>
+                  <!-- W9 29 -->
+                  <rect x="412" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="412" y="80" width="28" height="42" fill="#52B788" rx="2"/>
+                  <rect x="412" y="38" width="28" height="42" fill="#2D6A4F" rx="2"/>
+                  <text x="426" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W9</text>
+                  <!-- W10 30 -->
+                  <rect x="458" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="458" y="80" width="28" height="42" fill="#52B788" rx="2"/>
+                  <rect x="458" y="32" width="28" height="48" fill="#2D6A4F" rx="2"/>
+                  <text x="472" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W10</text>
+                  <!-- W11 31 -->
+                  <rect x="504" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="504" y="80" width="28" height="42" fill="#52B788" rx="2"/>
+                  <rect x="504" y="26" width="28" height="54" fill="#2D6A4F" rx="2"/>
+                  <text x="518" y="155" text-anchor="middle" font-size="6.5" fill="#6B6560" font-family="sans-serif">W11</text>
+                  <!-- W12 33 -->
+                  <rect x="550" y="122" width="28" height="18" fill="#D8F3DC" rx="2"/>
+                  <rect x="550" y="74" width="28" height="48" fill="#52B788" rx="2"/>
+                  <rect x="550" y="20" width="28" height="54" fill="#2D6A4F" rx="2"/>
+                  <text x="564" y="155" text-anchor="middle" font-size="6.5" fill="#C9963A" font-family="sans-serif" font-weight="500">W12–13</text>
+                </svg>
+              </div>
+
+              <!-- Legend -->
+              <div style="display:flex;gap:1.2rem;margin-bottom:1.2rem;flex-wrap:wrap;align-items:center;">
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.68rem;color:#6B6560;">
+                  <span style="width:10px;height:10px;background:#2D6A4F;border-radius:2px;display:inline-block;"></span> Adaeze (Wife)
+                </div>
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.68rem;color:#6B6560;">
+                  <span style="width:10px;height:10px;background:#52B788;border-radius:2px;display:inline-block;"></span> Simone (Daughter)
+                </div>
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.68rem;color:#6B6560;">
+                  <span style="width:10px;height:10px;background:#D8F3DC;border:1px solid rgba(45,106,79,0.3);border-radius:2px;display:inline-block;"></span> Daniel (Brother)
+                </div>
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.68rem;color:#C9963A;margin-left:auto;">
+                  <span style="width:16px;height:1px;background:#C9963A;display:inline-block;border-top:1px dashed #C9963A;"></span> Notable event
+                </div>
+              </div>
+
+              <!-- Compact weekly table -->
+              <div class="cr-table-wrap" style="margin-bottom:0.75rem;">
+                <table class="cr-table" style="font-size:0.72rem;">
+                  <thead>
+                    <tr>
+                      <th>Week</th><th>Adaeze</th><th>Simone</th><th>Daniel</th><th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>W1 · 1 Sept</td><td>16.0</td><td>5.5</td><td>3.0</td><td><span class="cr-hours-pill">24.5</span></td></tr>
+                    <tr><td>W2 · 8 Sept</td><td>17.0</td><td>5.5</td><td>3.0</td><td><span class="cr-hours-pill">25.5</span></td></tr>
+                    <tr><td>W3 · 15 Sept</td><td>17.0</td><td>6.0</td><td>3.0</td><td><span class="cr-hours-pill">26.0</span></td></tr>
+                    <tr><td>W4 · 22 Sept</td><td>18.0</td><td>6.0</td><td>3.0</td><td><span class="cr-hours-pill">27.0</span></td></tr>
+                    <tr><td>W5 · 29 Sept</td><td>17.0</td><td>6.0</td><td>3.0</td><td><span class="cr-hours-pill">26.0</span></td></tr>
+                    <tr><td>W6 · 6 Oct</td><td>18.0</td><td>6.5</td><td>3.0</td><td><span class="cr-hours-pill">27.5</span></td></tr>
+                    <tr style="background:#FDF3E0;"><td>W7 · 13 Oct ★ Adaeze away</td><td>6.0</td><td>20.0</td><td>3.0</td><td><span class="cr-hours-pill" style="background:#FDF3E0;color:#C9963A;border:1px solid rgba(201,150,58,0.3);">29.0</span></td></tr>
+                    <tr><td>W8 · 20 Oct</td><td>19.0</td><td>6.5</td><td>3.0</td><td><span class="cr-hours-pill">28.5</span></td></tr>
+                    <tr><td>W9 · 27 Oct</td><td>19.0</td><td>7.0</td><td>3.0</td><td><span class="cr-hours-pill">29.0</span></td></tr>
+                    <tr><td>W10 · 3 Nov</td><td>20.0</td><td>7.0</td><td>3.0</td><td><span class="cr-hours-pill">30.0</span></td></tr>
+                    <tr><td>W11 · 10 Nov</td><td>21.0</td><td>7.0</td><td>3.0</td><td><span class="cr-hours-pill">31.0</span></td></tr>
+                    <tr><td>W12 · 17 Nov</td><td>22.0</td><td>8.0</td><td>3.0</td><td><span class="cr-hours-pill">33.0</span></td></tr>
+                    <tr><td>W13 · 24 Nov</td><td>22.0</td><td>8.0</td><td>3.0</td><td><span class="cr-hours-pill">33.0</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="font-size:0.65rem;color:#C9963A;font-weight:300;font-style:italic;margin-bottom:0.5rem;">★ Notable event</p>
+
+              <div style="margin-top:0.75rem;display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;">
+                <div class="cr-summary-cell">
+                  <div class="cr-summary-num" style="font-size:1.1rem;">+35%</div>
+                  <div class="cr-summary-unit">increase W1 to W13</div>
+                </div>
+                <div class="cr-summary-cell">
+                  <div class="cr-summary-num" style="font-size:1.1rem;">28.4</div>
+                  <div class="cr-summary-unit">avg hrs / week</div>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <!-- ATTESTATION -->
+          <div style="padding:1.1rem 2rem;border-top:1px solid rgba(29,74,47,0.1);">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(29,74,47,0.08);">
+              <div style="width:22px;height:22px;background:#D8F3DC;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#2D6A4F;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div style="font-family:'Lora',serif;font-size:0.82rem;font-weight:500;color:#1D4A2F;">Attestation</div>
+              <div style="margin-left:auto;font-size:0.62rem;color:#6B6560;font-weight:300;">Self-reported information, human-in-the-loop attestation</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;">
+
+              <div>
+                <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.07em;color:#6B6560;font-weight:500;margin-bottom:0.4rem;">James Smith</div>
+                <div style="font-size:0.62rem;color:#6B6560;font-weight:300;margin-bottom:0.5rem;">Participant</div>
+                <div style="height:26px;margin-bottom:0.25rem;display:flex;align-items:flex-end;">
+                  <span style="font-family:'Pinyon Script',cursive;font-size:1.45rem;color:#1D4A2F;line-height:1;border-bottom:1px solid rgba(29,74,47,0.2);width:100%;padding-bottom:2px;display:inline-block;letter-spacing:0.02em;transform:rotate(-1px);">James Smith</span>
+                </div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;margin-bottom:0.6rem;">Signature</div>
+                <div style="font-size:0.78rem;color:#1D4A2F;font-weight:400;border-bottom:1px solid rgba(29,74,47,0.2);padding-bottom:2px;margin-bottom:0.25rem;">30 Nov 2025</div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;">Date</div>
+              </div>
+
+              <div>
+                <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.07em;color:#6B6560;font-weight:500;margin-bottom:0.4rem;">Adaeze Smith</div>
+                <div style="font-size:0.62rem;color:#6B6560;font-weight:300;margin-bottom:0.5rem;">Wife</div>
+                <div style="height:26px;margin-bottom:0.25rem;display:flex;align-items:flex-end;">
+                  <span style="font-family:'Pinyon Script',cursive;font-size:1.35rem;color:#1D4A2F;line-height:1;border-bottom:1px solid rgba(29,74,47,0.2);width:100%;padding-bottom:2px;display:inline-block;letter-spacing:0.02em;transform:rotate(0px);">Adaeze Smith</span>
+                </div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;margin-bottom:0.6rem;">Signature</div>
+                <div style="font-size:0.78rem;color:#1D4A2F;font-weight:400;border-bottom:1px solid rgba(29,74,47,0.2);padding-bottom:2px;margin-bottom:0.25rem;">30 Nov 2025</div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;">Date</div>
+              </div>
+
+              <div>
+                <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.07em;color:#6B6560;font-weight:500;margin-bottom:0.4rem;">Simone Smith</div>
+                <div style="font-size:0.62rem;color:#6B6560;font-weight:300;margin-bottom:0.5rem;">Daughter</div>
+                <div style="height:26px;margin-bottom:0.25rem;display:flex;align-items:flex-end;">
+                  <span style="font-family:'Pinyon Script',cursive;font-size:1.4rem;color:#1D4A2F;line-height:1;border-bottom:1px solid rgba(29,74,47,0.2);width:100%;padding-bottom:2px;display:inline-block;letter-spacing:0.02em;transform:rotate(-1px);">Simone Smith</span>
+                </div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;margin-bottom:0.6rem;">Signature</div>
+                <div style="font-size:0.78rem;color:#1D4A2F;font-weight:400;border-bottom:1px solid rgba(29,74,47,0.2);padding-bottom:2px;margin-bottom:0.25rem;">30 Nov 2025</div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;">Date</div>
+              </div>
+
+              <div>
+                <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.07em;color:#6B6560;font-weight:500;margin-bottom:0.4rem;">Daniel Smith</div>
+                <div style="font-size:0.62rem;color:#6B6560;font-weight:300;margin-bottom:0.5rem;">Brother</div>
+                <div style="height:26px;margin-bottom:0.25rem;display:flex;align-items:flex-end;">
+                  <span style="font-family:'Pinyon Script',cursive;font-size:1.5rem;color:#1D4A2F;line-height:1;border-bottom:1px solid rgba(29,74,47,0.2);width:100%;padding-bottom:2px;display:inline-block;letter-spacing:0.02em;transform:rotate(-2px);">Daniel Smith</span>
+                </div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;margin-bottom:0.6rem;">Signature</div>
+                <div style="font-size:0.78rem;color:#1D4A2F;font-weight:400;border-bottom:1px solid rgba(29,74,47,0.2);padding-bottom:2px;margin-bottom:0.25rem;">30 Nov 2025</div>
+                <div style="font-size:0.58rem;color:#6B6560;font-weight:300;">Date</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="cr-doc-footer">
+            <div class="cr-footer-note">Generated by Mallee · Australian data sovereignty · Privacy Act 1988 compliant</div>
+            <div class="cr-footer-brand">Mallee</div>
+          </div>
+
+        </div>
+
       </div>
     </div>
       <div class="browser-scroll-fade"></div>
