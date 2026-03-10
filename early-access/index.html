@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Early Access Program — Mallee</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-deep: #1C4A35;
+      --green-mid: #2D6A4F;
+      --green-light: #52B788;
+      --green-pale: #D8F3DC;
+      --green-wash: #F0FAF2;
+      --cream: #FAF7F2;
+      --ink: #1A1A1A;
+      --muted: #666;
+      --border: #D4E8D8;
+      --error: #C0392B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .hero {
+      background: var(--green-deep);
+      padding: 80px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 50% 120%, #52B78820 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .wordmark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--green-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      color: #fff;
+      line-height: 1.15;
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--green-light); }
+
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .card-wrap {
+      max-width: 600px;
+      margin: -48px auto 80px;
+      padding: 0 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 48px 44px;
+      box-shadow: 0 4px 32px rgba(28,74,53,0.10), 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .card-intro { margin-bottom: 36px; }
+
+    .card-intro h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: var(--green-deep);
+      margin-bottom: 10px;
+    }
+
+    .card-intro p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+    .field { margin-bottom: 24px; }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--green-deep);
+      margin-bottom: 7px;
+      letter-spacing: 0.01em;
+    }
+
+    label .req { color: var(--green-light); margin-left: 3px; }
+
+    input[type="text"], input[type="email"], input[type="tel"] {
+      width: 100%;
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--green-wash);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      -webkit-appearance: none;
+    }
+
+    input:focus {
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(82,183,136,0.15);
+      background: #fff;
+    }
+
+    .error-msg { display: none; font-size: 13px; color: var(--error); margin-top: 5px; }
+    .field.has-error .error-msg { display: block; }
+    .field.has-error input { border-color: var(--error); }
+
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .notice {
+      background: var(--green-pale);
+      border-left: 3px solid var(--green-light);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13.5px;
+      color: var(--green-deep);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
+    .notice a { color: var(--green-mid); font-weight: 600; text-decoration: none; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--green-mid);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-submit:hover { background: var(--green-deep); }
+    .btn-submit:active { transform: scale(0.99); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .success { display: none; text-align: center; padding: 16px 0; }
+
+    .success-icon {
+      width: 64px; height: 64px;
+      background: var(--green-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 28px;
+    }
+
+    .success h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: var(--green-deep);
+      margin-bottom: 12px;
+    }
+
+    .success p { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 400px; margin: 0 auto; }
+
+    .footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--muted); }
+    .footer a { color: var(--green-mid); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .card { padding: 36px 24px; }
+      .row-2 { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="wordmark">Mallee</div>
+    <h1>Early Access <em>Program</em></h1>
+    <p>Register your interest and we'll be in touch if you match our Early Access Program profile.</p>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card">
+
+      <div id="form-state">
+        <div class="card-intro">
+          <h2>Express your interest</h2>
+          <p>Fill in your details below. This takes about 2 minutes. We'll review your application personally.</p>
+        </div>
+
+        <form id="waitlist-form" novalidate>
+          <div class="row-2">
+            <div class="field" id="field-firstname">
+              <label for="firstname">First name <span class="req">*</span></label>
+              <input type="text" id="firstname" name="firstname" placeholder="Sofia" autocomplete="given-name">
+              <div class="error-msg">Please enter your first name.</div>
+            </div>
+            <div class="field" id="field-lastname">
+              <label for="lastname">Last name <span class="req">*</span></label>
+              <input type="text" id="lastname" name="lastname" placeholder="Cokis" autocomplete="family-name">
+              <div class="error-msg">Please enter your last name.</div>
+            </div>
+          </div>
+
+          <div class="field" id="field-location">
+            <label for="location">Location <span class="req">*</span></label>
+            <input type="text" id="location" name="location" placeholder="e.g. Parramatta, NSW" autocomplete="address-level2">
+            <div class="error-msg">Please enter your suburb and state.</div>
+          </div>
+
+          <div class="field" id="field-email">
+            <label for="email">Email address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
+            <div class="error-msg">Please enter a valid email address.</div>
+          </div>
+
+          <div class="field" id="field-phone">
+            <label for="phone">Mobile number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="04XX XXX XXX" autocomplete="tel">
+            <div class="error-msg">Please enter your mobile number.</div>
+          </div>
+
+          <div class="notice">
+            Your information is collected in accordance with our <a href="/privacy" target="_blank">Privacy Policy</a> and <a href="/collection-notice" target="_blank">Collection Notice</a>. We will only use it to assess your EAP application. We will not share it with anyone.
+          </div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">Express my interest</button>
+        </form>
+      </div>
+
+      <div class="success" id="success-state">
+        <div class="success-icon">🌿</div>
+        <h3>Thank you — we'll be in touch.</h3>
+        <p>We've received your expression of interest. Sofia personally reviews every application and will be in touch if you match our Early Access Program profile.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Mallee AI Pty Ltd &nbsp;|&nbsp; ABN: 55 696 012 790 &nbsp;|&nbsp; <a href="mailto:sofia@mallee.ai">sofia@mallee.ai</a> &nbsp;|&nbsp; <a href="/privacy">Privacy Policy</a></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('waitlist-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    function validateField(id, checkFn) {
+      const field = document.getElementById('field-' + id);
+      const input = document.getElementById(id);
+      const valid = checkFn(input.value.trim());
+      field.classList.toggle('has-error', !valid);
+      return valid;
+    }
+
+    function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+    function notEmpty(v) { return v.length > 0; }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const v1 = validateField('firstname', notEmpty);
+      const v2 = validateField('lastname', notEmpty);
+      const v3 = validateField('location', notEmpty);
+      const v4 = validateField('email', isEmail);
+      const v5 = validateField('phone', notEmpty);
+
+      if (!v1 || !v2 || !v3 || !v4 || !v5) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      const MC_U  = 'd8aaeac4c59e86055a1d89c6f';
+      const MC_ID = 'ec759ce2ad';
+
+      const result = await new Promise((resolve) => {
+        const cbName = 'mcCallback_' + Date.now();
+        window[cbName] = function(data) {
+          delete window[cbName];
+          document.head.removeChild(script);
+          resolve(data);
+        };
+
+        const params = new URLSearchParams({
+          u: MC_U, id: MC_ID,
+          EMAIL:    document.getElementById('email').value.trim(),
+          FNAME:    document.getElementById('firstname').value.trim(),
+          LNAME:    document.getElementById('lastname').value.trim(),
+          LOCATION: document.getElementById('location').value.trim(),
+          PHONE:    document.getElementById('phone').value.trim(),
+          ['b_' + MC_U + '_' + MC_ID]: '',
+          c: cbName
+        });
+
+        const script = document.createElement('script');
+        script.src = 'https://mallee.us11.list-manage.com/subscribe/post-json?' + params.toString();
+        document.head.appendChild(script);
+      });
+
+      if (result.result !== 'success') {
+        const alreadySubscribed = result.msg && result.msg.toLowerCase().includes('already subscribed');
+        if (!alreadySubscribed) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Express my interest';
+          alert('Something went wrong — please try again or email sofia@mallee.ai');
+          return;
+        }
+      }
+
+      document.getElementById('form-state').style.display = 'none';
+      const s = document.getElementById('success-state');
+      s.style.display = 'block';
+    });
+
+    ['firstname','lastname','location'].forEach(id => {
+      document.getElementById(id).addEventListener('blur', function() { validateField(id, notEmpty); });
+    });
+    document.getElementById('email').addEventListener('blur', function() { validateField('email', isEmail); });
+    document.getElementById('phone').addEventListener('blur', function() { validateField('phone', notEmpty); });
+  </script>
+
+</body>
+</html>
