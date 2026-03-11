@@ -655,16 +655,17 @@
 
   .cta-form {
     display: flex;
+    flex-direction: column;
     gap: 0.8rem;
-    max-width: 460px;
+    max-width: 520px;
     margin: 0 auto 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
   }
+  .cta-form-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .cta-form-row .cta-input { flex: 1; min-width: 180px; }
 
   .cta-input {
-    flex: 1;
-    min-width: 220px;
+    width: 100%;
+    box-sizing: border-box;
     padding: 0.85rem 1.4rem;
     border: 1.5px solid var(--border);
     border-radius: 100px;
@@ -689,13 +690,18 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
-    white-space: nowrap;
+    width: 100%;
   }
   .cta-submit:hover {
     background: var(--moss);
     transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(29,74,47,0.2);
   }
+  .cta-submit:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
+
+  .cta-success { display: none; text-align: center; padding: 1.5rem; }
+  .cta-success-title { font-family: 'Lora', serif; font-size: 1.2rem; color: #1C3D2B; margin-bottom: 0.5rem; }
+  .cta-success-sub { font-size: 0.9rem; color: #5a7a65; }
 
   .cta-note {
     font-size: 0.75rem;
@@ -1763,11 +1769,19 @@
   <div style="max-width:700px;margin:0 auto">
     <h2 class="cta-headline reveal">Interested in Mallee<br><em>for your caseload?</em></h2>
     <p class="cta-sub reveal">We're currently building out the coordinator experience. If you'd like to learn more about how Mallee works, discuss a participant referral, or be kept informed as we develop, get in touch directly.</p>
-    <div class="cta-form reveal">
-      <input type="email" class="cta-input" placeholder="Your email address">
-      <button class="cta-submit">Get in touch</button>
+    <form class="cta-form reveal" id="sc-form" novalidate>
+      <div class="cta-form-row">
+        <input type="text"  id="sc-fname" class="cta-input" placeholder="First name"   required>
+        <input type="text"  id="sc-lname" class="cta-input" placeholder="Last name"    required>
+      </div>
+      <input type="email" id="sc-email" class="cta-input" placeholder="Email address" required>
+      <button type="submit" class="cta-submit" id="sc-submit">Get in touch</button>
+      <p class="cta-note" style="text-align:center;margin-top:0.5rem;">We&rsquo;ll respond within one business day. Australian data only.</p>
+    </form>
+    <div class="cta-success" id="sc-success">
+      <p class="cta-success-title">Thank you &mdash; we&rsquo;ll be in touch soon.</p>
+      <p class="cta-success-sub">We respond to all coordinator enquiries within one business day.</p>
     </div>
-    <p class="cta-note reveal">We'll respond within one business day. Australian data only.</p>
   </div>
 </section>
 
@@ -1784,6 +1798,64 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
+
+  // Support Coordinators form — Mailchimp hidden iframe POST (industry audience)
+  // TODO: Replace MC_U and MC_ID below with your "industry" Mailchimp audience credentials
+  // Find them in Mailchimp → Audience → Settings → Audience name and defaults → Audience ID
+  // and Mailchimp → Audience → Signup forms → Embedded forms (look for u= and id= in the form action URL)
+  const MC_U  = 'REPLACE_WITH_INDUSTRY_U';
+  const MC_ID = 'REPLACE_WITH_INDUSTRY_ID';
+
+  const scForm = document.getElementById('sc-form');
+  if (scForm) {
+    scForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn   = document.getElementById('sc-submit');
+      const fname = document.getElementById('sc-fname').value.trim();
+      const lname = document.getElementById('sc-lname').value.trim();
+      const email = document.getElementById('sc-email').value.trim();
+      if (!fname || !lname || !email) { alert('Please fill in all fields.'); return; }
+      btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
+
+      const iframeName = 'mc_' + Date.now();
+      const iframe = document.createElement('iframe');
+      iframe.name = iframeName;
+      iframe.style.cssText = 'display:none;position:absolute;width:0;height:0;';
+
+      const mcForm = document.createElement('form');
+      mcForm.action = 'https://mallee.us11.list-manage.com/subscribe/post';
+      mcForm.method = 'POST';
+      mcForm.target = iframeName;
+      mcForm.style.display = 'none';
+      const fields = { u: MC_U, id: MC_ID, EMAIL: email, FNAME: fname, LNAME: lname };
+      fields['b_' + MC_U + '_' + MC_ID] = '';
+      for (const [k, v] of Object.entries(fields)) {
+        const inp = document.createElement('input');
+        inp.type = 'hidden'; inp.name = k; inp.value = v;
+        mcForm.appendChild(inp);
+      }
+
+      const mcTimeout = setTimeout(function() {
+        iframe.onload = null;
+        btn.disabled = false; btn.innerHTML = 'Get in touch';
+        if (document.body.contains(iframe)) document.body.removeChild(iframe);
+        if (document.body.contains(mcForm)) document.body.removeChild(mcForm);
+        alert('Request timed out \u2014 please try again or email sofia@mallee.ai');
+      }, 10000);
+
+      iframe.onload = function() {
+        clearTimeout(mcTimeout); iframe.onload = null;
+        if (document.body.contains(iframe)) document.body.removeChild(iframe);
+        if (document.body.contains(mcForm)) document.body.removeChild(mcForm);
+        document.getElementById('sc-form').style.display = 'none';
+        document.getElementById('sc-success').style.display = 'block';
+      };
+
+      document.body.appendChild(iframe);
+      document.body.appendChild(mcForm);
+      mcForm.submit();
+    });
+  }
 </script>
 
 </body>

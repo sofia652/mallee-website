@@ -2235,7 +2235,7 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // EAP form &mdash; Mailchimp JSONP
+  // EAP form — Mailchimp hidden iframe POST
   const MC_U  = 'd8aaeac4c59e86055a1d89c6f';
   const MC_ID = 'ec759ce2ad';
   const form  = document.getElementById('eap-form');
@@ -2248,45 +2248,44 @@
       const interest = document.getElementById('eap-interest').value.trim();
       if (!fname || !email || !interest) { alert('Please fill in all fields.'); return; }
       btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
-      const cbName = 'mcCb_' + Date.now();
-      function resetBtn() {
-        btn.disabled = false; btn.innerHTML = 'Get early access';
+
+      const iframeName = 'mc_' + Date.now();
+      const iframe = document.createElement('iframe');
+      iframe.name = iframeName;
+      iframe.style.cssText = 'display:none;position:absolute;width:0;height:0;';
+
+      const mcForm = document.createElement('form');
+      mcForm.action = 'https://mallee.us11.list-manage.com/subscribe/post';
+      mcForm.method = 'POST';
+      mcForm.target = iframeName;
+      mcForm.style.display = 'none';
+      const fields = { u: MC_U, id: MC_ID, EMAIL: email, FNAME: fname, INTEREST: interest };
+      fields['b_' + MC_U + '_' + MC_ID] = '';
+      for (const [k, v] of Object.entries(fields)) {
+        const inp = document.createElement('input');
+        inp.type = 'hidden'; inp.name = k; inp.value = v;
+        mcForm.appendChild(inp);
       }
-      window[cbName] = function(data) {
-        clearTimeout(mcTimeout);
-        delete window[cbName];
-        if (document.head.contains(script)) document.head.removeChild(script);
-        const ok = data.result === 'success' || (data.msg && data.msg.toLowerCase().includes('already subscribed'));
-        if (ok) {
-          document.getElementById('eap-form').style.display = 'none';
-          document.getElementById('eap-success').style.display = 'block';
-        } else {
-          resetBtn();
-          alert('Something went wrong \u2014 please try again or email sofia@mallee.ai');
-        }
-      };
-      const params = new URLSearchParams({
-        u: MC_U, id: MC_ID,
-        EMAIL: email, FNAME: fname, INTEREST: interest,
-        ['b_' + MC_U + '_' + MC_ID]: '',
-        c: cbName
-      });
-      const script = document.createElement('script');
-      script.onerror = function() {
-        clearTimeout(mcTimeout);
-        delete window[cbName];
-        if (document.head.contains(script)) document.head.removeChild(script);
-        resetBtn();
-        alert('Could not reach Mailchimp \u2014 check your connection or email sofia@mallee.ai');
-      };
+
       const mcTimeout = setTimeout(function() {
-        delete window[cbName];
-        if (document.head.contains(script)) document.head.removeChild(script);
-        resetBtn();
+        iframe.onload = null;
+        btn.disabled = false; btn.innerHTML = 'Get early access';
+        if (document.body.contains(iframe)) document.body.removeChild(iframe);
+        if (document.body.contains(mcForm)) document.body.removeChild(mcForm);
         alert('Request timed out \u2014 please try again or email sofia@mallee.ai');
       }, 10000);
-      script.src = 'https://mallee.us11.list-manage.com/subscribe/post-json?' + params.toString();
-      document.head.appendChild(script);
+
+      iframe.onload = function() {
+        clearTimeout(mcTimeout); iframe.onload = null;
+        if (document.body.contains(iframe)) document.body.removeChild(iframe);
+        if (document.body.contains(mcForm)) document.body.removeChild(mcForm);
+        document.getElementById('eap-form').style.display = 'none';
+        document.getElementById('eap-success').style.display = 'block';
+      };
+
+      document.body.appendChild(iframe);
+      document.body.appendChild(mcForm);
+      mcForm.submit();
     });
   }
 </script>
