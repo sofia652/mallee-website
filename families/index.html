@@ -1900,14 +1900,19 @@
       if (!fname || !email || !interest) { alert('Please fill in all fields.'); return; }
       btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
       const cbName = 'mcCb_' + Date.now();
+      function resetBtn() {
+        btn.disabled = false; btn.innerHTML = 'Get early access';
+      }
       window[cbName] = function(data) {
-        delete window[cbName]; document.head.removeChild(script);
+        clearTimeout(mcTimeout);
+        delete window[cbName];
+        if (document.head.contains(script)) document.head.removeChild(script);
         const ok = data.result === 'success' || (data.msg && data.msg.toLowerCase().includes('already subscribed'));
         if (ok) {
           document.getElementById('families-form').style.display = 'none';
           document.getElementById('fam-success').style.display = 'block';
         } else {
-          btn.disabled = false; btn.innerHTML = 'Get early access';
+          resetBtn();
           alert('Something went wrong \u2014 please try again or email sofia@mallee.ai');
         }
       };
@@ -1918,6 +1923,19 @@
         c: cbName
       });
       const script = document.createElement('script');
+      script.onerror = function() {
+        clearTimeout(mcTimeout);
+        delete window[cbName];
+        if (document.head.contains(script)) document.head.removeChild(script);
+        resetBtn();
+        alert('Could not reach Mailchimp \u2014 check your connection or email sofia@mallee.ai');
+      };
+      const mcTimeout = setTimeout(function() {
+        delete window[cbName];
+        if (document.head.contains(script)) document.head.removeChild(script);
+        resetBtn();
+        alert('Request timed out \u2014 please try again or email sofia@mallee.ai');
+      }, 10000);
       script.src = 'https://mallee.us11.list-manage.com/subscribe/post-json?' + params.toString();
       document.head.appendChild(script);
     });
