@@ -1799,9 +1799,7 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // Support Coordinators form — Google Sheets via Apps Script
-  // TODO: Paste your deployed Google Apps Script URL below (see google-sheets-script.js in this repo)
-  const SHEETS_URL = 'REPLACE_WITH_YOUR_APPS_SCRIPT_URL';
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyXevcRvAU-XWqSv3ppGd9xrcGSx5lUkQd3aYNEiLCOWcW158srO3e-mIOqo0uOkF8/exec';
 
   const scForm = document.getElementById('sc-form');
   if (scForm) {
