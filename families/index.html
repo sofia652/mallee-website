@@ -655,16 +655,17 @@
 
   .cta-form {
     display: flex;
+    flex-direction: column;
     gap: 0.8rem;
-    max-width: 460px;
+    max-width: 520px;
     margin: 0 auto 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
   }
+  .cta-form-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .cta-form-row .cta-input { flex: 1; min-width: 180px; }
 
   .cta-input {
-    flex: 1;
-    min-width: 220px;
+    width: 100%;
+    box-sizing: border-box;
     padding: 0.85rem 1.4rem;
     border: 1.5px solid var(--border);
     border-radius: 100px;
@@ -677,6 +678,7 @@
   }
   .cta-input:focus { border-color: var(--sage); }
   .cta-input::placeholder { color: #b0a9a3; }
+  .cta-textarea { border-radius: 14px !important; min-height: 100px; resize: vertical; line-height: 1.65; }
 
   .cta-submit {
     background: var(--forest);
@@ -689,13 +691,18 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
-    white-space: nowrap;
+    width: 100%;
   }
   .cta-submit:hover {
     background: var(--moss);
     transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(29,74,47,0.2);
   }
+  .cta-submit:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
+
+  .cta-success { display: none; text-align: center; padding: 1.5rem; }
+  .cta-success-title { font-family: 'Lora', serif; font-size: 1.2rem; color: #1C3D2B; margin-bottom: 0.5rem; }
+  .cta-success-sub { font-size: 0.9rem; color: #5a7a65; }
 
   .cta-note {
     font-size: 0.75rem;
@@ -1849,11 +1856,19 @@
   <div style="max-width:700px;margin:0 auto">
     <h2 class="cta-headline reveal">You've been doing both jobs.<br><em>Let Mallee take one back.</em></h2>
     <p class="cta-sub reveal">Stop carrying the second job. Mallee handles the evidence, the documentation, the Care Record &mdash; so you can spend your energy on the people you love.<br><br>One quick call, twice a week. No apps, no paperwork, no training required.</p>
-    <div class="cta-form reveal">
-      <input type="email" class="cta-input" placeholder="Your email address">
-      <button class="cta-submit">Get early access</button>
+    <form class="cta-form reveal" id="families-form" novalidate>
+      <div class="cta-form-row">
+        <input type="text"  id="fam-fname"    class="cta-input" placeholder="First name"    required>
+        <input type="email" id="fam-email"    class="cta-input" placeholder="Email address" required>
+      </div>
+      <textarea id="fam-interest" class="cta-input cta-textarea" placeholder="What are you hoping Mallee can help with?" rows="4" required></textarea>
+      <button type="submit" class="cta-submit" id="fam-submit">Get early access</button>
+      <p class="cta-note" style="text-align:center;margin-top:0.5rem;">We&rsquo;ll review your expression of interest personally. You&rsquo;ll hear from us within 2 business days.</p>
+    </form>
+    <div class="cta-success" id="fam-success">
+      <p class="cta-success-title">Thank you &mdash; we&rsquo;ve received your expression of interest.</p>
+      <p class="cta-success-sub">We&rsquo;ll be in touch within 2 business days.</p>
     </div>
-    <p class="cta-note reveal">No credit card required. Australian data only. Cancel anytime.</p>
   </div>
 </section>
 
@@ -1870,6 +1885,43 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
+
+  // Families EAP form — Mailchimp JSONP
+  const MC_U  = 'd8aaeac4c59e86055a1d89c6f';
+  const MC_ID = 'ec759ce2ad';
+  const famForm = document.getElementById('families-form');
+  if (famForm) {
+    famForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn      = document.getElementById('fam-submit');
+      const fname    = document.getElementById('fam-fname').value.trim();
+      const email    = document.getElementById('fam-email').value.trim();
+      const interest = document.getElementById('fam-interest').value.trim();
+      if (!fname || !email || !interest) { alert('Please fill in all fields.'); return; }
+      btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
+      const cbName = 'mcCb_' + Date.now();
+      window[cbName] = function(data) {
+        delete window[cbName]; document.head.removeChild(script);
+        const ok = data.result === 'success' || (data.msg && data.msg.toLowerCase().includes('already subscribed'));
+        if (ok) {
+          document.getElementById('families-form').style.display = 'none';
+          document.getElementById('fam-success').style.display = 'block';
+        } else {
+          btn.disabled = false; btn.innerHTML = 'Get early access';
+          alert('Something went wrong \u2014 please try again or email sofia@mallee.ai');
+        }
+      };
+      const params = new URLSearchParams({
+        u: MC_U, id: MC_ID,
+        EMAIL: email, FNAME: fname, INTEREST: interest,
+        ['b_' + MC_U + '_' + MC_ID]: '',
+        c: cbName
+      });
+      const script = document.createElement('script');
+      script.src = 'https://mallee.us11.list-manage.com/subscribe/post-json?' + params.toString();
+      document.head.appendChild(script);
+    });
+  }
 </script>
 
 </body>

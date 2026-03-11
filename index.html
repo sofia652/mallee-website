@@ -2247,7 +2247,7 @@
       const email    = document.getElementById('eap-email').value.trim();
       const interest = document.getElementById('eap-interest').value.trim();
       if (!fname || !email || !interest) { alert('Please fill in all fields.'); return; }
-      btn.disabled = true; btn.textContent = 'Submitting&hellip;';
+      btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
       const cbName = 'mcCb_' + Date.now();
       window[cbName] = function(data) {
         delete window[cbName]; document.head.removeChild(script);
@@ -2256,8 +2256,8 @@
           document.getElementById('eap-form').style.display = 'none';
           document.getElementById('eap-success').style.display = 'block';
         } else {
-          btn.disabled = false; btn.textContent = 'Get early access';
-          alert('Something went wrong &mdash; please try again or email sofia@mallee.ai');
+          btn.disabled = false; btn.innerHTML = 'Get early access';
+          alert('Something went wrong \u2014 please try again or email sofia@mallee.ai');
         }
       };
       const params = new URLSearchParams({
