@@ -1886,17 +1886,17 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-// EAP form — Google Sheets
+// Families form — Google Sheets
   const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyXevcRvAU-XWqSv3ppGd9xrcGSx5lUkQd3aYNEiLCOWcW158srO3e-mIOqo0uOkF8/exec';
 
-  const form = document.getElementById('eap-form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
+  const famForm = document.getElementById('families-form');
+  if (famForm) {
+    famForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      const btn      = document.getElementById('eap-submit');
-      const fname    = document.getElementById('eap-fname').value.trim();
-      const email    = document.getElementById('eap-email').value.trim();
-      const interest = document.getElementById('eap-interest').value.trim();
+      const btn      = document.getElementById('fam-submit');
+      const fname    = document.getElementById('fam-fname').value.trim();
+      const email    = document.getElementById('fam-email').value.trim();
+      const interest = document.getElementById('fam-interest').value.trim();
       if (!fname || !email || !interest) { alert('Please fill in all fields.'); return; }
       btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
 
@@ -1904,12 +1904,12 @@
       data.append('FNAME', fname);
       data.append('EMAIL', email);
       data.append('INTEREST', interest);
-      data.append('SOURCE', 'for-you');
+      data.append('SOURCE', 'families');
 
       fetch(SHEETS_URL, { method: 'POST', mode: 'no-cors', body: data })
         .then(function() {
-          document.getElementById('eap-form').style.display = 'none';
-          document.getElementById('eap-success').style.display = 'block';
+          document.getElementById('families-form').style.display = 'none';
+          document.getElementById('fam-success').style.display = 'block';
         })
         .catch(function() {
           btn.disabled = false; btn.innerHTML = 'Get early access';
