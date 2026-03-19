@@ -2222,7 +2222,7 @@
 
 <footer>
   <div class="footer-logo">Mallee</div>
-  <div class="footer-note">Australian data sovereignty. Privacy Act 1988 compliant. NDIS registration pending. Aligned with the National Carer Strategy 2024&ndash;2034.</div>
+  <div class="footer-note">Privacy Act 1988 compliant. Aligned with the National Carer Strategy 2024&ndash;2034.</div>
 </footer>
 
 <script>
@@ -2235,10 +2235,10 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // EAP form — Mailchimp hidden iframe POST
-  const MC_U  = 'd8aaeac4c59e86055a1d89c6f';
-  const MC_ID = 'ec759ce2ad';
-  const form  = document.getElementById('eap-form');
+// EAP form — Google Sheets
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyXevcRvAU-XWqSv3ppGd9xrcGSx5lUkQd3aYNEiLCOWcW158srO3e-mIOqo0uOkF8/exec';
+
+  const form = document.getElementById('eap-form');
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -2249,43 +2249,21 @@
       if (!fname || !email || !interest) { alert('Please fill in all fields.'); return; }
       btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
 
-      const iframeName = 'mc_' + Date.now();
-      const iframe = document.createElement('iframe');
-      iframe.name = iframeName;
-      iframe.style.cssText = 'display:none;position:absolute;width:0;height:0;';
+      const data = new FormData();
+      data.append('FNAME', fname);
+      data.append('EMAIL', email);
+      data.append('INTEREST', interest);
+      data.append('SOURCE', 'for-you');
 
-      const mcForm = document.createElement('form');
-      mcForm.action = 'https://mallee.us11.list-manage.com/subscribe/post';
-      mcForm.method = 'POST';
-      mcForm.target = iframeName;
-      mcForm.style.display = 'none';
-      const fields = { u: MC_U, id: MC_ID, EMAIL: email, FNAME: fname, INTEREST: interest };
-      fields['b_' + MC_U + '_' + MC_ID] = '';
-      for (const [k, v] of Object.entries(fields)) {
-        const inp = document.createElement('input');
-        inp.type = 'hidden'; inp.name = k; inp.value = v;
-        mcForm.appendChild(inp);
-      }
-
-      const mcTimeout = setTimeout(function() {
-        iframe.onload = null;
-        btn.disabled = false; btn.innerHTML = 'Get early access';
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-        if (document.body.contains(mcForm)) document.body.removeChild(mcForm);
-        alert('Request timed out \u2014 please try again or email sofia@mallee.ai');
-      }, 10000);
-
-      iframe.onload = function() {
-        clearTimeout(mcTimeout); iframe.onload = null;
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-        if (document.body.contains(mcForm)) document.body.removeChild(mcForm);
-        document.getElementById('eap-form').style.display = 'none';
-        document.getElementById('eap-success').style.display = 'block';
-      };
-
-      document.body.appendChild(iframe);
-      document.body.appendChild(mcForm);
-      mcForm.submit();
+      fetch(SHEETS_URL, { method: 'POST', mode: 'no-cors', body: data })
+        .then(function() {
+          document.getElementById('eap-form').style.display = 'none';
+          document.getElementById('eap-success').style.display = 'block';
+        })
+        .catch(function() {
+          btn.disabled = false; btn.innerHTML = 'Get early access';
+          alert('Something went wrong \u2014 please try again or email sofia@mallee.ai');
+        });
     });
   }
 </script>
