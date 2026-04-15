@@ -2031,9 +2031,10 @@ footer {
   <div class="center">
     <div class="eyebrow reveal" style="justify-content:center;">Join the Early Access Program</div>
     <h2 class="reveal d1">Mallee builds the evidence.<br><em>So you have the <em style="font-style:italic;color:var(--moss);">agency to advocate.</em></em></h2>
+    <div id="eap-pre-submit">
     <p class="reveal d2">We'll review your expression of interest personally and you'll hear from us within 2 business days.</p>
     <p class="reveal d2" style="margin-bottom:2rem;">Once a week. Five minutes. No apps, no preparation, no commitment required. Cancel anytime.</p>
-
+    </div>
     <div class="signup-form reveal d2">
       <form id="eap-form">
         <div class="form-group">
@@ -2070,7 +2071,7 @@ footer {
   <div class="not-ready-inner">
     <div>
       <p>Not ready yet?</p>
-      <p>Our general availability is coming early June 2026. Leave your details and we'll be in touch with more information.</p>
+      <p id="not-ready-desc">Our general availability is coming early June 2026. Leave your details and we'll be in touch with more information.</p>
     </div>
     <form id="register-form" novalidate class="not-ready-form">
       <input type="text" id="reg-fname" placeholder="First name" required class="not-ready-input">
@@ -2078,7 +2079,7 @@ footer {
       <button type="submit" id="reg-submit" class="not-ready-btn">Get notified</button>
     </form>
     <div id="register-success" style="display:none;">
-      <p style="font-family:'Lora',serif;font-size:1rem;color:var(--forest);line-height:1.7;">You're on the list. We'll be in touch when general availability opens in June 2026.</p>
+      <p style="font-family:'Lora',serif;font-size:1rem;color:var(--white);line-height:1.7;">You're on the list. We'll be in touch when general availability opens in June 2026.</p>
     </div>
   </div>
 </div>
@@ -2226,32 +2227,6 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   },3200);
 })();
 
-// ── EAP form — Mailchimp
-const MC_U='d8aaeac4c59e86055a1d89c6f', MC_ID='ec759ce2ad';
-const form=document.getElementById('eap-form');
-if(form){
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    const btn=document.getElementById('eap-submit');
-    const fname=document.getElementById('eap-fname').value.trim();
-    const email=document.getElementById('eap-email').value.trim();
-    const interest=document.getElementById('eap-interest').value.trim();
-    if(!fname||!email||!interest){alert('Please fill in all fields.');return;}
-    btn.disabled=true;btn.innerHTML='Submitting\u2026';
-    const iframeName='mc_'+Date.now();
-    const iframe=document.createElement('iframe');
-    iframe.name=iframeName;iframe.style.cssText='display:none;position:absolute;width:0;height:0;';
-    const mcForm=document.createElement('form');
-    mcForm.action='https://mallee.us11.list-manage.com/subscribe/post';
-    mcForm.method='POST';mcForm.target=iframeName;mcForm.style.display='none';
-    const fields={u:MC_U,id:MC_ID,EMAIL:email,FNAME:fname,INTEREST:interest};
-    fields['b_'+MC_U+'_'+MC_ID]='';
-    for(const[k,v] of Object.entries(fields)){const inp=document.createElement('input');inp.type='hidden';inp.name=k;inp.value=v;mcForm.appendChild(inp);}
-    const t=setTimeout(function(){iframe.onload=null;btn.disabled=false;btn.innerHTML='Express my interest';},10000);
-    iframe.onload=function(){clearTimeout(t);iframe.onload=null;document.getElementById('eap-form').style.display='none';document.getElementById('eap-success').style.display='block';};
-    document.body.appendChild(iframe);document.body.appendChild(mcForm);mcForm.submit();
-  });
-}
 // ── Register form — Google Sheets
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw60VZlP-Tnmy7wfhaK9ug453sFyD_zHG_Mx94kE1rGqutOIcMTfz6DmLx1XyQ9n5rt/exec';
 const regForm = document.getElementById('register-form');
@@ -2281,11 +2256,13 @@ if (regForm) {
     const t = setTimeout(function() {
       iframe.onload = null;
       btn.disabled = false; btn.innerHTML = 'Get notified';
+      document.getElementById('not-ready-desc').style.display = 'none';
       document.getElementById('register-form').style.display = 'none';
       document.getElementById('register-success').style.display = 'block';
     }, 3000);
     iframe.onload = function() {
       clearTimeout(t); iframe.onload = null;
+      document.getElementById('not-ready-desc').style.display = 'none';
       document.getElementById('register-form').style.display = 'none';
       document.getElementById('register-success').style.display = 'block';
     };
