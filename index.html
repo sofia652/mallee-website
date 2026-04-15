@@ -769,6 +769,7 @@ section.tight { padding: 4rem 1.5rem; }
 .founder-photo {
   width: 100%;
   aspect-ratio: 4/5;
+  max-height: 390px;
   border-radius: 16px;
   overflow: hidden;
   background: var(--sage-light);
@@ -2053,7 +2054,7 @@ footer {
         <button type="submit" class="form-submit" id="eap-submit">Express my interest</button>
       </form>
       <div id="eap-success" style="display:none;">
-        <p style="font-family:'Lora',serif;font-size:1rem;color:white;line-height:1.7;">You're on the list. We'll review your expression of interest personally and be in touch within 2 business days. In the meantime, you can call Mallee directly on +61 8 7943 6079 to hear what your first check-in sounds like.</p>
+        <p style="font-family:'Lora',serif;font-size:1rem;color:var(--forest);line-height:1.7;">You're on the list. We'll review your expression of interest personally and be in touch within 2 business days. In the meantime, you can call Mallee directly on +61 8 7943 6079 to hear what your first check-in sounds like.</p>
       </div>
     </div>
 
@@ -2280,7 +2281,9 @@ if (regForm) {
     const t = setTimeout(function() {
       iframe.onload = null;
       btn.disabled = false; btn.innerHTML = 'Get notified';
-    }, 10000);
+      document.getElementById('register-form').style.display = 'none';
+      document.getElementById('register-success').style.display = 'block';
+    }, 3000);
     iframe.onload = function() {
       clearTimeout(t); iframe.onload = null;
       document.getElementById('register-form').style.display = 'none';
