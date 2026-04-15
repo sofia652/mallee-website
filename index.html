@@ -2053,7 +2053,7 @@ footer {
         <button type="submit" class="form-submit" id="eap-submit">Express my interest</button>
       </form>
       <div id="eap-success" style="display:none;">
-        <p style="font-family:'Lora',serif;font-size:1rem;color:var(--forest);line-height:1.7;">You're on the list. We'll review your expression of interest personally and be in touch within 2 business days. In the meantime, you can call Mallee directly on +61 8 7943 6079 to hear what your first check-in sounds like.</p>
+        <p style="font-family:'Lora',serif;font-size:1rem;color:white;line-height:1.7;">You're on the list. We'll review your expression of interest personally and be in touch within 2 business days. In the meantime, you can call Mallee directly on +61 8 7943 6079 to hear what your first check-in sounds like.</p>
       </div>
     </div>
 
@@ -2250,6 +2250,7 @@ if(form){
     iframe.onload=function(){clearTimeout(t);iframe.onload=null;document.getElementById('eap-form').style.display='none';document.getElementById('eap-success').style.display='block';};
     document.body.appendChild(iframe);document.body.appendChild(mcForm);mcForm.submit();
   });
+}
 // ── Register form — Google Sheets
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw60VZlP-Tnmy7wfhaK9ug453sFyD_zHG_Mx94kE1rGqutOIcMTfz6DmLx1XyQ9n5rt/exec';
 const regForm = document.getElementById('register-form');
@@ -2260,7 +2261,7 @@ if (regForm) {
     const fname = document.getElementById('reg-fname').value.trim();
     const email = document.getElementById('reg-email').value.trim();
     if (!fname || !email) { alert('Please fill in all fields.'); return; }
-    btn.disabled = true; btn.innerHTML = 'Submitting\u2026';
+    btn.disabled = true; btn.innerHTML = 'Submitting…';
     const iframeName = 'gs_reg_' + Date.now();
     const iframe = document.createElement('iframe');
     iframe.name = iframeName;
@@ -2290,6 +2291,7 @@ if (regForm) {
     gsForm.submit();
   });
 }
+
 </script>
 </body>
 </html>
