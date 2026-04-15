@@ -2227,6 +2227,51 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   },3200);
 })();
 
+// ── EAP form — Google Sheets
+const EAP_URL = 'https://script.google.com/macros/s/AKfycbw60VZlP-Tnmy7wfhaK9ug453sFyD_zHG_Mx94kE1rGqutOIcMTfz6DmLx1XyQ9n5rt/exec';
+const form = document.getElementById('eap-form');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('eap-submit');
+    const fname = document.getElementById('eap-fname').value.trim();
+    const email = document.getElementById('eap-email').value.trim();
+    const interest = document.getElementById('eap-interest').value.trim();
+    if (!fname || !email || !interest) { alert('Please fill in all fields.'); return; }
+    btn.disabled = true; btn.innerHTML = 'Submitting…';
+    const iframeName = 'gs_eap_' + Date.now();
+    const iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.cssText = 'display:none;position:absolute;width:0;height:0;';
+    const gsForm = document.createElement('form');
+    gsForm.action = EAP_URL;
+    gsForm.method = 'POST';
+    gsForm.target = iframeName;
+    gsForm.style.display = 'none';
+    const fields = { FNAME: fname, LNAME: '', EMAIL: email, INTEREST: interest, SOURCE: 'eap' };
+    for (const [k, v] of Object.entries(fields)) {
+      const inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = k; inp.value = v;
+      gsForm.appendChild(inp);
+    }
+    const t = setTimeout(function() {
+      iframe.onload = null;
+      document.getElementById('eap-pre-submit').style.display = 'none';
+      document.getElementById('eap-form').style.display = 'none';
+      document.getElementById('eap-success').style.display = 'block';
+    }, 3000);
+    iframe.onload = function() {
+      clearTimeout(t); iframe.onload = null;
+      document.getElementById('eap-pre-submit').style.display = 'none';
+      document.getElementById('eap-form').style.display = 'none';
+      document.getElementById('eap-success').style.display = 'block';
+    };
+    document.body.appendChild(iframe);
+    document.body.appendChild(gsForm);
+    gsForm.submit();
+  });
+}
+  
 // ── Register form — Google Sheets
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw60VZlP-Tnmy7wfhaK9ug453sFyD_zHG_Mx94kE1rGqutOIcMTfz6DmLx1XyQ9n5rt/exec';
 const regForm = document.getElementById('register-form');
