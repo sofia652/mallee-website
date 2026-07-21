@@ -919,11 +919,8 @@ details[open] .faq-arrow { transform: rotate(180deg); }
 ───────────────────────────────────── */
 .pricing-section { background: var(--cream); padding: 6rem 1.5rem; text-align: center; border-top: 1px solid var(--border); }
 .pricing-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr;
   gap: 2rem; max-width: 860px; margin: 3rem auto 0;
-}
-  .pricing-grid {
-  justify-items: center;
 }
 .pricing-card {
   background: white; border-radius: 28px;
@@ -2341,7 +2338,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   },3200);
 })();
 
-// ── EAP form — Google Sheets
+// ── Sign-up form — Google Sheets
 const EAP_URL = 'https://script.google.com/macros/s/AKfycbw60VZlP-Tnmy7wfhaK9ug453sFyD_zHG_Mx94kE1rGqutOIcMTfz6DmLx1XyQ9n5rt/exec';
 const form = document.getElementById('eap-form');
 if (form) {
