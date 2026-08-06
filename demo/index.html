@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTM4L3TQ3P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DTM4L3TQ3P');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hear a real Mallee check-in | Mallee</title>
+<meta name="description" content="Listen to a real Mallee weekly check-in, read the transcript, and see the Care Record entry it created. Nothing staged.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:     #FAF7F2;
+  --white:     #FFFFFF;
+  --forest:    #1D4A2F;
+  --moss:      #2D6A4F;
+  --sage:      #52B788;
+  --sage-light:#D8F3DC;
+  --gold:      #C9963A;
+  --gold-light:#FDF3E0;
+  --earth:     #3D2B1F;
+  --warm-grey: #3D3A38;
+  --mid-grey:  #6B6560;
+  --border:    rgba(29,74,47,0.1);
+  --charcoal:  #1C1C1C;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: Geist, sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV (matches the homepage) ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.4rem 2.5rem;
+  /* 3 equal-side columns so the centre group is centred on the page,
+     not just in the space left over between the logo and the CTAs */
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  /* Pre-declare the pill's border + radius so neither ANIMATES on scroll.
+     Without this the border grows 0->1px from currentColor (near-black) while
+     the radius morphs 0->100px: a black rectangle flashing into the pill.
+     Cream-at-zero-alpha rather than `transparent` keeps the fade clean too. */
+  background: rgba(250,247,242,0);
+  border: 1px solid rgba(29,74,47,0);
+  border-radius: 100px;
+  /* explicit list: never transition backdrop-filter (it flickers on layer creation) */
+  transition: top 0.35s ease, left 0.35s ease, right 0.35s ease,
+              max-width 0.35s ease, padding 0.35s ease,
+              background-color 0.35s ease, border-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+nav > .logo { justify-self: start; }
+/* keeps the wordmark visually inset without unbalancing the grid */
+nav.scrolled > .logo { padding-left: 0.9rem; }
+nav > .nav-links-center { justify-self: center; }
+nav > .nav-actions { justify-self: end; }
+nav.scrolled {
+  top: 0.8rem; left: 1.5rem; right: 1.5rem;
+  width: auto; max-width: 1000px;
+  margin: 0 auto;
+  background: rgba(250,247,242,0.97);
+  backdrop-filter: blur(16px);
+  padding: 0.7rem 0.7rem;   /* symmetric, so the centre column is centred on the pill */
+  box-shadow: 0 4px 24px rgba(29,74,47,0.07);
+  border-color: var(--border);
+}
+.logo {
+  font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 500;
+  color: var(--forest); letter-spacing: 0.04em; text-decoration: none;
+}
+.nav-links-center { display: flex; gap: 0.2rem; align-items: center; }
+.nav-link {
+  font-size: 0.83rem; color: var(--mid-grey); text-decoration: none;
+  padding: 0.4rem 0.75rem; border-radius: 100px; transition: all 0.2s;
+}
+.nav-link:hover { color: var(--forest); background: var(--sage-light); }
+.nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+.nav-cta {
+  background: var(--forest); color: white;
+  padding: 0.55rem 1.3rem; border-radius: 100px;
+  font-size: 0.83rem; font-weight: 500;
+  text-decoration: none; transition: background 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--moss); }
+.nav-cta-outline {
+  background: var(--cream); color: var(--forest);
+  padding: 0.55rem 1.3rem; border-radius: 100px;
+  font-size: 0.83rem; font-weight: 500;
+  text-decoration: none; transition: all 0.2s;
+  border: 1.5px solid var(--forest); white-space: nowrap;
+}
+.nav-cta-outline:hover { background: var(--forest); color: white; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 0.4rem;
+}
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--cream); z-index: 99;
+  flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-link { font-family: 'Lora', serif; font-size: 1.4rem; color: var(--forest); text-decoration: none; }
+.nav-mobile-cta {
+  background: var(--forest); color: white; padding: 0.8rem 2rem;
+  border-radius: 100px; font-size: 1rem; text-decoration: none; margin-top: 0.5rem;
+}
+@media (max-width: 1000px) {
+  /* collapse before the nav gets too narrow to centre the middle group;
+     flex again so the hamburger doesn't land in the middle column */
+  nav { display: flex; justify-content: space-between; }
+  .nav-links-center { display: none; }
+  .nav-cta, .nav-cta-outline { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* ── PAGE ── */
+.wrap { max-width: 820px; margin: 0 auto; padding: 9rem 1.5rem 4rem; }
+
+.pill {
+  display: inline-block; background: var(--sage-light); color: var(--forest);
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.45rem 1rem; border-radius: 100px; margin-bottom: 1.2rem;
+}
+h1 {
+  font-family: 'Lora', serif; font-weight: 500;
+  font-size: clamp(1.9rem, 5vw, 2.7rem); line-height: 1.15;
+  color: var(--forest); margin-bottom: 1rem;
+}
+h1 em { font-style: italic; color: var(--moss); }
+.lede {
+  font-size: 1.02rem; line-height: 1.75; color: var(--warm-grey);
+  font-weight: 300; max-width: 60ch; margin-bottom: 1.6rem;
+}
+.lede strong { color: var(--forest); font-weight: 500; }
+
+/* legend */
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; margin-bottom: 3rem; }
+.legend span { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.76rem; color: var(--mid-grey); }
+.sw { width: 13px; height: 13px; border-radius: 4px; flex-shrink: 0; }
+.sw-care { background: var(--forest); }
+.sw-part { background: var(--sage); }
+.sw-carer { background: var(--gold); }
+
+/* ── pipeline spine ── */
+.pipeline { position: relative; padding-left: 3rem; }
+.pipeline::before {
+  content: ""; position: absolute; left: 15px; top: 10px; bottom: 10px;
+  width: 2px; background: linear-gradient(var(--sage) 0%, var(--moss) 100%); border-radius: 2px;
+}
+.stage { position: relative; margin-bottom: 3rem; }
+.stage:last-child { margin-bottom: 0; }
+.stage-dot {
+  position: absolute; left: -3rem; top: 0;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--sage-light); border: 2px solid var(--sage);
+  display: flex; align-items: center; justify-content: center; color: var(--forest);
+}
+.stage-dot svg { width: 15px; height: 15px; }
+.stage-label {
+  font-size: 0.66rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--moss); margin-bottom: 0.7rem; padding-top: 0.4rem;
+}
+
+.card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 6px 36px rgba(29,74,47,0.06);
+}
+
+/* ── audio player ── */
+.player { display: flex; align-items: center; gap: 1.1rem; padding: 1.3rem 1.4rem; }
+.play-btn {
+  flex: 0 0 auto; width: 52px; height: 52px; border-radius: 50%;
+  background: var(--forest); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+}
+.play-btn:hover { background: var(--moss); transform: scale(1.04); }
+.play-btn:focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; }
+.play-btn svg { width: 18px; height: 18px; fill: var(--cream); display: block; }
+.player-meta { flex: 1; min-width: 0; }
+.player-title { font-weight: 500; font-size: 0.92rem; color: var(--forest); margin-bottom: 0.15rem; }
+.player-sub { font-size: 0.72rem; color: var(--mid-grey); font-weight: 300; margin-bottom: 0.6rem; }
+.wave { display: flex; align-items: center; gap: 2px; height: 30px; cursor: pointer; }
+.wave i {
+  flex: 1; border-radius: 2px; background: rgba(29,74,47,0.16); display: block;
+  transition: background 0.2s, transform 0.2s; transform-origin: center;
+}
+.wave i.played { background: var(--sage); }
+.wave i.at { background: var(--forest); }
+.player.playing .wave i.at { animation: pulseBar 0.6s ease-in-out infinite alternate; }
+@keyframes pulseBar { from { transform: scaleY(0.75); } to { transform: scaleY(1.15); } }
+.player-time { flex: 0 0 auto; font-size: 0.76rem; color: var(--mid-grey); font-variant-numeric: tabular-nums; }
+.player-note {
+  padding: 0 1.4rem 1.2rem; font-size: 0.74rem; color: var(--mid-grey);
+  font-weight: 300; line-height: 1.6;
+}
+.player-fallback { padding: 1.3rem 1.4rem; }
+.player-fallback .fb-title { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--forest); margin-bottom: 0.3rem; }
+.player-fallback .fb-box {
+  background: var(--gold-light); border: 1px solid rgba(201,150,58,0.28);
+  border-radius: 10px; padding: 0.85rem 1rem; font-size: 0.8rem; color: var(--earth); line-height: 1.65;
+}
+.player-fallback a { color: var(--moss); font-weight: 600; text-decoration: none; }
+
+/* ── transcript ── */
+.transcript { padding: 0.6rem 1.4rem 0; }
+.turn { display: flex; gap: 0.8rem; padding: 0.85rem 0; }
+.turn + .turn { border-top: 1px solid var(--cream); }
+.avatar {
+  flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 500; margin-top: 2px;
+}
+.avatar.mallee { background: var(--forest); color: var(--cream); }
+.avatar.carer { background: var(--sage-light); color: var(--forest); }
+.turn-body { flex: 1; min-width: 0; }
+.speaker {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.11em;
+  text-transform: uppercase; color: var(--mid-grey); margin-bottom: 0.25rem;
+}
+.turn p { font-size: 0.88rem; line-height: 1.7; color: var(--warm-grey); font-weight: 300; }
+.turn.is-mallee p { color: var(--forest); }
+mark.hl { border-radius: 3px; padding: 0.05em 0.2em; color: inherit; }
+mark.hl.care  { background: rgba(29,74,47,0.13);  box-shadow: inset 0 -2px 0 var(--forest); }
+mark.hl.part  { background: rgba(82,183,136,0.22); box-shadow: inset 0 -2px 0 var(--sage); }
+mark.hl.carer { background: rgba(201,150,58,0.18); box-shadow: inset 0 -2px 0 var(--gold); }
+
+.fade { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.transcript-more {
+  display: block; width: 100%; background: none; border: none;
+  border-top: 1px solid var(--border); color: var(--moss);
+  font-family: inherit; font-size: 0.82rem; font-weight: 500;
+  padding: 1rem; cursor: pointer; transition: color 0.2s;
+}
+.transcript-more:hover { color: var(--forest); background: var(--cream); }
+.transcript-more:focus-visible { outline: 3px solid var(--sage); outline-offset: -3px; }
+
+/* ── care record entry ── */
+.rec-head {
+  background: var(--forest); color: var(--cream);
+  padding: 1.2rem 1.4rem; display: flex; justify-content: space-between;
+  gap: 1rem; align-items: flex-start; flex-wrap: wrap;
+}
+.rec-head .brand { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--sage); }
+.rec-head h2 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.35rem; line-height: 1.1; margin: 0.15rem 0 0.2rem; }
+.rec-head .sub { font-size: 0.57rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.72; }
+.rec-head .right { text-align: right; }
+.rec-head .right .period { font-family: 'Lora', serif; font-style: italic; font-size: 0.86rem; margin-top: 0.2rem; }
+
+.rec-ids {
+  display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 0.9rem 1.4rem;
+  background: var(--sage-light); border-bottom: 1px solid var(--border);
+}
+.id-label { font-size: 0.57rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--moss); font-weight: 600; }
+.id-value { font-size: 0.85rem; font-weight: 500; color: var(--forest); }
+
+.rec-body { padding: 1.3rem 1.4rem 1.4rem; }
+.rec-sec { margin-bottom: 1.5rem; }
+.rec-sec:last-child { margin-bottom: 0; }
+.rec-sec-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem;
+  border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; margin-bottom: 0.8rem;
+}
+.rec-sec-title { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: var(--forest); }
+.rec-sec-meta { font-size: 0.6rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid-grey); }
+.rec-sec > p { font-size: 0.87rem; line-height: 1.7; color: var(--warm-grey); font-weight: 300; }
+
+.care-row {
+  display: grid; grid-template-columns: 4px 1fr 150px 118px; gap: 0 0.9rem;
+  padding: 0.85rem 0; border-bottom: 1px solid var(--border); align-items: start;
+}
+.care-row:last-of-type { border-bottom: none; }
+.care-bar { width: 4px; border-radius: 3px; background: var(--forest); align-self: stretch; min-height: 40px; }
+.care-name { font-size: 0.86rem; font-weight: 500; color: var(--forest); margin-bottom: 0.15rem; }
+.care-detail { font-size: 0.78rem; line-height: 1.6; color: var(--warm-grey); font-weight: 300; }
+.who {
+  display: inline-block; font-size: 0.64rem; background: var(--sage-light); color: var(--forest);
+  padding: 0.15rem 0.5rem; border-radius: 100px; margin: 0 0.2rem 0.2rem 0; white-space: nowrap;
+}
+.intense { font-size: 0.73rem; font-weight: 600; color: var(--forest); display: block; margin-top: 0.15rem; }
+.freq { font-size: 0.78rem; color: var(--warm-grey); }
+.freq small { display: block; font-size: 0.69rem; color: var(--mid-grey); font-weight: 300; margin-top: 0.1rem; }
+.ican {
+  display: inline-block; font-size: 0.58rem; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--forest); border: 1px solid var(--sage); background: white;
+  padding: 0.15rem 0.45rem; border-radius: 4px; margin: 0 0.25rem 0.25rem 0;
+}
+.care-head-row {
+  display: grid; grid-template-columns: 4px 1fr 150px 118px; gap: 0 0.9rem;
+  padding-bottom: 0.4rem; border-bottom: 1.5px solid var(--forest);
+}
+.care-head-row div { font-size: 0.57rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid-grey); font-weight: 600; }
+
+.wb { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+.wb-name {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase; color: var(--gold);
+}
+.wb-name::before { content: ''; width: 10px; height: 10px; border-radius: 3px; background: var(--gold); }
+.dots { display: inline-flex; gap: 4px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--gold); background: transparent; }
+.dot.on { background: var(--gold); }
+.wb-score { font-size: 0.84rem; font-weight: 600; color: var(--forest); }
+.wb-note { font-size: 0.82rem; color: var(--warm-grey); font-weight: 300; }
+.quote {
+  font-family: 'Lora', serif; font-style: italic; font-size: 0.94rem; color: var(--moss);
+  border-left: 3px solid var(--gold); padding: 0.15rem 0 0.15rem 0.9rem; margin-top: 0.8rem; line-height: 1.65;
+}
+.rec-foot {
+  padding: 0.85rem 1.4rem; background: var(--cream); border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.rec-foot p { font-size: 0.7rem; color: var(--mid-grey); font-style: italic; font-weight: 300; }
+.rec-foot .brand { font-family: 'Lora', serif; font-style: italic; color: var(--forest); font-size: 0.82rem; }
+
+/* ── closing CTA ── */
+.closing { text-align: center; margin-top: 4.5rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+.closing h2 { font-family: 'Lora', serif; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 500; color: var(--forest); line-height: 1.25; margin-bottom: 0.8rem; }
+.closing h2 em { font-style: italic; color: var(--moss); }
+.closing p { font-size: 0.95rem; color: var(--warm-grey); font-weight: 300; line-height: 1.7; max-width: 52ch; margin: 0 auto 1.8rem; }
+.closing-ctas { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.cta-solid {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--forest); color: white; padding: 0.9rem 2.2rem;
+  border-radius: 100px; font-size: 0.92rem; font-weight: 500;
+  text-decoration: none; transition: all 0.2s;
+}
+.cta-solid:hover { background: var(--moss); transform: translateY(-1px); }
+.cta-outline {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--forest); padding: 0.9rem 2.2rem;
+  border-radius: 100px; font-size: 0.92rem; font-weight: 500;
+  text-decoration: none; transition: all 0.2s; border: 1.5px solid var(--forest);
+}
+.cta-outline:hover { background: var(--forest); color: white; transform: translateY(-1px); }
+
+footer.page-foot {
+  text-align: center; padding: 2.5rem 1.5rem 3rem;
+  border-top: 1px solid var(--border); margin-top: 4rem;
+}
+.page-foot .brand { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--forest); letter-spacing: 0.04em; }
+.page-foot p { font-size: 0.72rem; color: var(--mid-grey); font-weight: 300; margin-top: 0.5rem; }
+.page-foot a { color: var(--moss); text-decoration: none; }
+
+@media (max-width: 720px) {
+  nav { padding: 1.1rem 1.2rem; }
+  .wrap { padding: 7rem 1.1rem 3rem; }
+  .pipeline { padding-left: 2.4rem; }
+  .stage-dot { left: -2.4rem; width: 26px; height: 26px; }
+  .stage-dot svg { width: 12px; height: 12px; }
+  .pipeline::before { left: 12px; }
+  .player { gap: 0.8rem; padding: 1.1rem; }
+  .play-btn { width: 46px; height: 46px; }
+  .transcript { padding: 0.4rem 1.1rem 0; }
+  .turn p { font-size: 0.84rem; }
+  .rec-head { padding: 1.1rem; flex-direction: column; gap: 0.5rem; }
+  .rec-head .right { text-align: left; }
+  .rec-ids { gap: 0.9rem 1.2rem; padding: 0.85rem 1.1rem; }
+  .rec-body { padding: 1.1rem; }
+  .care-head-row { display: none; }
+  .care-row { grid-template-columns: 4px 1fr; gap: 0 0.7rem; }
+  .care-row > div:nth-child(3), .care-row > div:nth-child(4) { grid-column: 2; margin-top: 0.4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade { transition: none; }
+  .player.playing .wave i.at { animation: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="/" class="logo">Mallee</a>
+  <div class="nav-links-center">
+    <a href="/#meet" class="nav-link">Meet Mallee</a>
+    <a href="/#how" class="nav-link">How it works</a>
+    <a href="/#pricing" class="nav-link">Plans</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://calendar.app.google/94jopmLGMobPJkW87" target="_blank" rel="noopener noreferrer" class="nav-cta-outline">Speak to our team</a>
+    <a href="/#signup" class="nav-cta">Join Mallee</a>
+  </div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="/#how" class="nav-mobile-link" onclick="closeMobileMenu()">How it works</a>
+  <a href="/#pricing" class="nav-mobile-link" onclick="closeMobileMenu()">Plans</a>
+  <a href="https://calendar.app.google/94jopmLGMobPJkW87" target="_blank" rel="noopener noreferrer" class="nav-mobile-link" onclick="closeMobileMenu()">Speak to our team</a>
+  <a href="/#signup" class="nav-mobile-cta" onclick="closeMobileMenu()">Join Mallee</a>
+</div>
+
+<div class="wrap">
+
+  <span class="pill">A real call</span>
+  <h1>Hear a real Mallee <em>check-in.</em></h1>
+  <p class="lede">
+    This is <strong>Sofia's own weekly call</strong> — our founder, checking in about her dad Tas. Listen to the conversation, read the transcript, then see the Care Record entry it created. Nothing staged.
+  </p>
+
+  <div class="legend">
+    <span><i class="sw sw-care"></i> Care provided</span>
+    <span><i class="sw sw-part"></i> Tas's wellbeing</span>
+    <span><i class="sw sw-carer"></i> Carer wellbeing</span>
+  </div>
+
+  <div class="pipeline">
+
+    <!-- ── STAGE 1 — the call ── -->
+    <div class="stage">
+      <div class="stage-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a4 4 0 0 0-4 4v5a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4Zm-7 9a1 1 0 1 1 2 0 5 5 0 0 0 10 0 1 1 0 1 1 2 0 7 7 0 0 1-6 6.93V21h2a1 1 0 1 1 0 2H9a1 1 0 1 1 0-2h2v-2.07A7 7 0 0 1 5 12Z"/></svg>
+      </div>
+      <div class="stage-label">The call</div>
+
+      <div class="card">
+        <div id="player" class="player-shell">
+          <div class="player">
+            <button class="play-btn" id="playBtn" type="button" aria-label="Play Sofia's check-in call">
+              <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <div class="player-meta">
+              <div class="player-title">Sofia's weekly check-in</div>
+              <div class="player-sub">Mallee &amp; Sofia · recorded with consent</div>
+              <div class="wave" id="wave" role="slider" tabindex="0" aria-label="Seek within recording" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+            </div>
+            <div class="player-time" id="playerTime">0:00</div>
+          </div>
+          <audio id="callAudio" preload="metadata" src="/mallee_checkin.mp3"></audio>
+          <p class="player-note">
+            Everything in the record below came out of this conversation. Mallee does not observe, assess or diagnose — it records what the family said, in their words.
+          </p>
+        </div>
+
+        <div class="player-fallback" id="playerFallback" style="display:none;">
+          <div class="fb-title">Hear a check-in for yourself</div>
+          <div class="fb-box">
+            The sample recording isn't available right now. Call <a href="tel:+61862193344">(08) 6219 3344</a> and Mallee will run a live check-in with you — takes two minutes.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STAGE 2 — the transcript ── -->
+    <div class="stage">
+      <div class="stage-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Zm4 3a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2H8Zm0 4a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Zm0 4a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H8Z"/></svg>
+      </div>
+      <div class="stage-label">The transcript</div>
+
+      <div class="card">
+        <div class="transcript">
+
+          <div class="turn is-mallee">
+            <div class="avatar mallee" aria-hidden="true">M</div>
+            <div class="turn-body">
+              <div class="speaker">Mallee</div>
+              <p>Hi Sofia, it's Mallee calling for Tas's regular check-in. This call is recorded to help build their Care Record. Are you happy to continue?</p>
+            </div>
+          </div>
+
+          <div class="turn">
+            <div class="avatar carer" aria-hidden="true">S</div>
+            <div class="turn-body">
+              <div class="speaker">Sofia</div>
+              <p>Yes.</p>
+            </div>
+          </div>
+
+          <div class="turn is-mallee">
+            <div class="avatar mallee" aria-hidden="true">M</div>
+            <div class="turn-body">
+              <div class="speaker">Mallee</div>
+              <p>Thank you, Sofia. So, tell me about the last few days with Tas. What did a typical day look like?</p>
+            </div>
+          </div>
+
+          <div class="turn">
+            <div class="avatar carer" aria-hidden="true">S</div>
+            <div class="turn-body">
+              <div class="speaker">Sofia</div>
+              <p>This week's been pretty steady. <mark class="hl part">He has had a lot of shaking in his left arm the first part of the week, so it made it hard to get him on the exercise bike, his regular exercise, because he could not grip the handlebars.</mark> It also made it difficult when showering him. So when my mum was showering him, <mark class="hl care">she had to actually call my sister and I to come and help. It would need three people in order to move him</mark> just because of the shaking hand. But otherwise, <mark class="hl part">he was in good spirits. He had some friends over and worked this week</mark>, which was good.</p>
+            </div>
+          </div>
+
+          <div class="fade" id="moreTranscript">
+
+            <div class="turn is-mallee">
+              <div class="avatar mallee" aria-hidden="true">M</div>
+              <div class="turn-body">
+                <div class="speaker">Mallee</div>
+                <p>You mentioned the shaking made showering really difficult, to the point where it took three people to help him safely. I want to make sure we capture that properly for his Care Record. Was the support mainly hands-on physical help, or was there also a safety supervision element?</p>
+              </div>
+            </div>
+
+            <div class="turn">
+              <div class="avatar carer" aria-hidden="true">S</div>
+              <div class="turn-body">
+                <div class="speaker">Sofia</div>
+                <p>It's mostly hands-on physical help. <mark class="hl care">We took him from his wheelchair, we used the hoist and hoisted him onto his shower chair. On his shower chair he had to be buckled in so that he wasn't going to fall out. Because of his shaking, it required my sister to assist with his arm and then my mum and I to move him safely.</mark></p>
+              </div>
+            </div>
+
+            <div class="turn is-mallee">
+              <div class="avatar mallee" aria-hidden="true">M</div>
+              <div class="turn-body">
+                <div class="speaker">Mallee</div>
+                <p>So showering requires full hands-on physical assistance: the hoist transfer, positioning, buckling in, and managing his arm during the shaking. How often does Tas need that level of help? Every day, or a few times a week?</p>
+              </div>
+            </div>
+
+            <div class="turn">
+              <div class="avatar carer" aria-hidden="true">S</div>
+              <div class="turn-body">
+                <div class="speaker">Sofia</div>
+                <p><mark class="hl care">That just happened two days this week. His arm was shaky for two days. For the rest of the days he was okay to shower with just my mum.</mark></p>
+              </div>
+            </div>
+
+            <div class="turn is-mallee">
+              <div class="avatar mallee" aria-hidden="true">M</div>
+              <div class="turn-body">
+                <div class="speaker">Mallee</div>
+                <p>Got it. I've added that to Tas's Care Record. You also mentioned he had friends over and did some work this week. What kind of support did he need?</p>
+              </div>
+            </div>
+
+            <div class="turn">
+              <div class="avatar carer" aria-hidden="true">S</div>
+              <div class="turn-body">
+                <div class="speaker">Sofia</div>
+                <p>We just set him up in his comfy chair. His friends were able to assist him if he needed anything. And then work, <mark class="hl care">I had to do a little bit of typing for him because of his shaky hand, but once we positioned him in front of his computer, he could work by himself.</mark></p>
+              </div>
+            </div>
+
+            <div class="turn is-mallee">
+              <div class="avatar mallee" aria-hidden="true">M</div>
+              <div class="turn-body">
+                <div class="speaker">Mallee</div>
+                <p>I'd love to hear something that went well this week. What did Tas manage that felt good?</p>
+              </div>
+            </div>
+
+            <div class="turn">
+              <div class="avatar carer" aria-hidden="true">S</div>
+              <div class="turn-body">
+                <div class="speaker">Sofia</div>
+                <p><mark class="hl part">The friends coming over was good. It made everyone happy, lifted our spirits. And it was good that he was able to be social.</mark></p>
+              </div>
+            </div>
+
+            <div class="turn is-mallee">
+              <div class="avatar mallee" aria-hidden="true">M</div>
+              <div class="turn-body">
+                <div class="speaker">Mallee</div>
+                <p>Before we wrap up, I want to check in on you, Sofia, not just as someone supporting Tas, but as a person. How are you doing?</p>
+              </div>
+            </div>
+
+            <div class="turn">
+              <div class="avatar carer" aria-hidden="true">S</div>
+              <div class="turn-body">
+                <div class="speaker">Sofia</div>
+                <p>I'm good. <mark class="hl carer">I made it to Pilates this week, which is nice. It's been a little bit stressful, the shaking. I'm just not sure if it's going to cause any more problems. But I did make it to Pilates, and I'm feeling good.</mark></p>
+              </div>
+            </div>
+
+            <div class="turn is-mallee">
+              <div class="avatar mallee" aria-hidden="true">M</div>
+              <div class="turn-body">
+                <div class="speaker">Mallee</div>
+                <p>If one means you're running on empty and five means you're feeling good and sustainable, where would you put yourself this week?</p>
+              </div>
+            </div>
+
+            <div class="turn">
+              <div class="avatar carer" aria-hidden="true">S</div>
+              <div class="turn-body">
+                <div class="speaker">Sofia</div>
+                <p><mark class="hl carer">I would put myself at a four this week.</mark></p>
+              </div>
+            </div>
+
+            <div class="turn is-mallee">
+              <div class="avatar mallee" aria-hidden="true">M</div>
+              <div class="turn-body">
+                <div class="speaker">Mallee</div>
+                <p>Thanks for taking the time today. Everything you've shared will go into Tas's Care Record. The work you're doing for Tas doesn't go unnoticed.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <button class="transcript-more" id="transcriptMore" aria-expanded="false" aria-controls="moreTranscript">Read the full transcript →</button>
+      </div>
+    </div>
+
+    <!-- ── STAGE 3 — the Care Record entry ── -->
+    <div class="stage">
+      <div class="stage-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"/></svg>
+      </div>
+      <div class="stage-label">The Care Record entry it created</div>
+
+      <div class="card">
+        <div class="rec-head">
+          <div>
+            <div class="brand">Mallee</div>
+            <h2>Care Record</h2>
+            <div class="sub">Informal support documentation</div>
+          </div>
+          <div class="right">
+            <div class="sub">Weekly check-in entry</div>
+            <div class="period">Self-reported by Sofia</div>
+          </div>
+        </div>
+
+        <div class="rec-ids">
+          <div>
+            <div class="id-label">Participant</div>
+            <div class="id-value">Tas</div>
+          </div>
+          <div>
+            <div class="id-label">Carer on call</div>
+            <div class="id-value">Sofia · Daughter</div>
+          </div>
+          <div>
+            <div class="id-label">Care network this week</div>
+            <div class="id-value">Sofia, Shantha &amp; Bella</div>
+          </div>
+        </div>
+
+        <div class="rec-body">
+
+          <div class="rec-sec">
+            <div class="rec-sec-head">
+              <span class="rec-sec-title">This week with Tas</span>
+              <span class="rec-sec-meta">In Sofia's words</span>
+            </div>
+            <p>Shaking in Tas's left arm for two days early in the week meant he couldn't grip the handlebars of his exercise bike, and showering needed extra hands. He was in good spirits: he worked, and having friends over lifted the whole household.</p>
+          </div>
+
+          <div class="rec-sec">
+            <div class="rec-sec-head">
+              <span class="rec-sec-title">Care provided</span>
+              <span class="rec-sec-meta">3 supports · 4 domains evidenced</span>
+            </div>
+
+            <div class="care-head-row">
+              <div></div><div>Support</div><div>Provided by</div><div>Frequency</div>
+            </div>
+
+            <div class="care-row">
+              <div class="care-bar"></div>
+              <div>
+                <div class="care-name">Showering &amp; transfers</div>
+                <div class="care-detail">Hoist from wheelchair, positioning and securing on the shower chair, steadying his arm during the shaking</div>
+                <div style="margin-top:0.45rem;"><span class="ican">Self-care</span><span class="ican">Mobility</span></div>
+              </div>
+              <div>
+                <span class="who">Shantha</span><span class="who">Sofia</span><span class="who">Bella</span>
+                <span class="intense">3 people</span>
+              </div>
+              <div class="freq">2 days<small>Shantha alone on the other days</small></div>
+            </div>
+
+            <div class="care-row">
+              <div class="care-bar"></div>
+              <div>
+                <div class="care-name">Support to work</div>
+                <div class="care-detail">Positioning Tas at his computer; typing for him while his hand was shaky, then he worked independently</div>
+                <div style="margin-top:0.45rem;"><span class="ican">Lifelong Learning</span></div>
+              </div>
+              <div><span class="who">Sofia</span><span class="intense">1 person</span></div>
+              <div class="freq">Workdays<small>this week</small></div>
+            </div>
+
+            <div class="care-row">
+              <div class="care-bar"></div>
+              <div>
+                <div class="care-name">Social connection</div>
+                <div class="care-detail">Setting Tas up in his chair so friends could visit</div>
+                <div style="margin-top:0.45rem;"><span class="ican">Interpersonal Interaction &amp; Relationships</span></div>
+              </div>
+              <div><span class="who">Family</span><span class="intense">Shared</span></div>
+              <div class="freq">Once<small>this week</small></div>
+            </div>
+          </div>
+
+          <div class="rec-sec">
+            <div class="rec-sec-head">
+              <span class="rec-sec-title">Carer wellbeing</span>
+              <span class="rec-sec-meta">Self-rated on the call</span>
+            </div>
+            <div class="wb">
+              <span class="wb-name">Sofia</span>
+              <span class="dots">
+                <i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i>
+              </span>
+              <span class="wb-score">4 / 5</span>
+              <span class="wb-note">Made time for Pilates; some worry about the shaking.</span>
+            </div>
+            <p class="quote">"It's been a little bit stressful, the shaking… but I did make it to Pilates, and I'm feeling good."</p>
+          </div>
+
+        </div>
+
+        <div class="rec-foot">
+          <p>Self-reported information from a structured check-in conversation. Transcript available.</p>
+          <span class="brand">Mallee</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── closing ── -->
+  <div class="closing">
+    <h2>Every entry is drawn from<br>the family's <em>own words.</em></h2>
+    <p>Call by call, that builds a longitudinal record of the informal care that holds everything together — ready before you need it.</p>
+    <div class="closing-ctas">
+      <a href="/#signup" class="cta-solid">
+        Join Mallee
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://calendar.app.google/94jopmLGMobPJkW87" target="_blank" rel="noopener noreferrer" class="cta-outline">Speak to our team</a>
+    </div>
+  </div>
+</div>
+
+<footer class="page-foot">
+  <div class="brand">Mallee</div>
+  <p>Australian data sovereignty · Privacy Act 1988 compliant · <a href="/">Back to mallee.ai</a></p>
+</footer>
+
+<script>
+// ── nav scroll + mobile menu
+window.addEventListener('scroll', function(){
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+var hamburger = document.getElementById('nav-hamburger');
+var mobileMenu = document.getElementById('nav-mobile-menu');
+function closeMobileMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamburger.addEventListener('click', function(){
+  var isOpen = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+// ── audio player
+(function(){
+  var audio = document.getElementById('callAudio');
+  var shell = document.getElementById('player');
+  var fallback = document.getElementById('playerFallback');
+  var btn = document.getElementById('playBtn');
+  var icon = document.getElementById('playIcon');
+  var wave = document.getElementById('wave');
+  var time = document.getElementById('playerTime');
+  var card = document.querySelector('.player');
+
+  var PLAY = '<path d="M8 5v14l11-7z"/>';
+  var PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+  var BARS = 48;
+
+  // deterministic pseudo-waveform, so it looks the same on every load
+  for (var i = 0; i < BARS; i++) {
+    var v = Math.abs(Math.sin(i * 1.7) * 0.55 + Math.sin(i * 0.6) * 0.32 + Math.sin(i * 3.1) * 0.13);
+    var b = document.createElement('i');
+    b.style.height = (26 + Math.round(v * 74)) + '%';
+    wave.appendChild(b);
+  }
+  var bars = wave.querySelectorAll('i');
+
+  function fmt(s) {
+    if (!isFinite(s) || s < 0) s = 0;
+    return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  }
+  function paint() {
+    var d = audio.duration;
+    var pct = (isFinite(d) && d > 0) ? audio.currentTime / d : 0;
+    var at = Math.floor(pct * BARS);
+    for (var i = 0; i < bars.length; i++) {
+      bars[i].classList.toggle('played', i < at);
+      bars[i].classList.toggle('at', i === at && !audio.paused);
+    }
+    wave.setAttribute('aria-valuenow', Math.round(pct * 100));
+    time.textContent = fmt(audio.currentTime) + (isFinite(d) && d > 0 ? ' / ' + fmt(d) : '');
+  }
+
+  btn.addEventListener('click', function(){
+    if (audio.paused) { var p = audio.play(); if (p && p.catch) p.catch(function(){}); }
+    else audio.pause();
+  });
+  audio.addEventListener('play', function(){ icon.innerHTML = PAUSE; card.classList.add('playing'); btn.setAttribute('aria-label','Pause the check-in recording'); });
+  audio.addEventListener('pause', function(){ icon.innerHTML = PLAY; card.classList.remove('playing'); btn.setAttribute('aria-label','Play the check-in recording'); paint(); });
+  audio.addEventListener('ended', function(){ icon.innerHTML = PLAY; card.classList.remove('playing'); });
+  audio.addEventListener('timeupdate', paint);
+  audio.addEventListener('loadedmetadata', paint);
+
+  wave.addEventListener('click', function(e){
+    var r = wave.getBoundingClientRect();
+    var pct = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    if (isFinite(audio.duration) && audio.duration > 0) { audio.currentTime = pct * audio.duration; paint(); }
+  });
+  wave.addEventListener('keydown', function(e){
+    if (!isFinite(audio.duration)) return;
+    if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); paint(); e.preventDefault(); }
+    if (e.key === 'ArrowLeft')  { audio.currentTime = Math.max(0, audio.currentTime - 5); paint(); e.preventDefault(); }
+    if (e.key === ' ' || e.key === 'Enter') { btn.click(); e.preventDefault(); }
+  });
+
+  // the element starts loading while the page parses, so the error may already
+  // have fired by the time this runs — check the state as well as listening
+  function noSource(){ shell.style.display = 'none'; fallback.style.display = ''; }
+  audio.addEventListener('error', noSource);
+  if (audio.error || audio.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) noSource();
+  paint();
+})();
+
+// ── transcript expander
+(function(){
+  var btn = document.getElementById('transcriptMore');
+  var more = document.getElementById('moreTranscript');
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    if (open) {
+      more.style.maxHeight = more.scrollHeight + 'px';   // fix height before collapsing
+      void more.offsetHeight;
+      more.style.maxHeight = '0';
+      btn.textContent = 'Read the full transcript →';
+    } else {
+      more.style.maxHeight = more.scrollHeight + 'px';
+      btn.textContent = 'Show less ↑';
+    }
+  });
+  // once expanded, drop the fixed height so the panel reflows on resize
+  more.addEventListener('transitionend', function(){
+    if (btn.getAttribute('aria-expanded') === 'true') more.style.maxHeight = 'none';
+  });
+})();
+</script>
+
+</body>
+</html>
